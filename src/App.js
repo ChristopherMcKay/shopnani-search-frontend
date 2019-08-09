@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Logo from './Components/Logo';
 import Search from './Components/Search';
+import ProductList from './Components/ProductList';
 import './App.css';
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
       <div className="App">
         <Logo />
         <Search />
+        <ProductList />
       </div>
     );
   }

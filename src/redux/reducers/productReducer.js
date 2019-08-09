@@ -19,10 +19,9 @@ export default (state = initialState, action) => {
             return updated;
 
         case GET_PRODUCTS_ERROR:
-                console.log('this is running')
                 updated.error = action.payload;
                 updated.isLoading = false;
-                console.log(updated.error)
+                updated.products = [];
         
                 return updated;
         

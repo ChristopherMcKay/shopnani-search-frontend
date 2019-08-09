@@ -11,6 +11,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+
 
 import { searchProducts } from '../redux/actions/productAction';
 import { connect } from 'react-redux';
@@ -54,6 +58,8 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
 }
 
 function getSuggestions(value) {
+
+
     const inputValue = deburr(value.trim()).toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
@@ -128,6 +134,13 @@ const styles = theme => ({
       },
       divider: {
         height: theme.spacing(2),
+      },
+      formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+      },
+      selectEmpty: {
+        marginTop: theme.spacing(2),
       }
   });
 
@@ -141,16 +154,20 @@ class Search extends Component {
     single: '',
     popper: '',
     stateSuggestions: [],
-    items: []
+    items: [],
+    values: {
+        sort: '',
+        order: ''
+    }
   }
 
   handleSuggestionsFetchRequested = ({ value }) => {
-    getSuggestions(value)
-    .then( stuff => {
-      this.setState({
-        stateSuggestions: stuff
-      });
-    })
+    // this.props.searchProducts(value)
+    // .then( stuff => {
+    //   this.setState({
+    //     stateSuggestions: stuff
+    //   });
+    // })
     
   };
 
@@ -166,6 +183,38 @@ class Search extends Component {
       [name]: newValue,
     });
   };
+
+  handleSubmit = (event) => {
+
+    event.preventDefault();
+
+    let searchObj = {
+        product: event.target.product.value,
+        sort: event.target.sort.value,
+        order: event.target.order.value
+    }
+
+    this.props.searchProducts(searchObj);
+  }
+
+  sortHandleChange = (event) => {
+    this.setState({
+        values: {
+        order: this.state.values.order,
+        [event.target.name]: event.target.value
+        }
+      });
+  }
+
+  orderHandleChange = (event) => {
+
+    this.setState({
+        values: {
+        sort: this.state.values.sort,
+        [event.target.name]: event.target.value
+        }
+      });
+  }
 
 
   
@@ -188,13 +237,13 @@ class Search extends Component {
             <CssBaseline />
             <div className={classes.paper}>
                
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={this.handleSubmit}>
 
                 <Autosuggest
                   {...autosuggestProps}
                   inputProps={{
                     classes,
-                    name: 'food',
+                    name: 'product',
                     id: 'react-autosuggest-simple',
                     label: 'Search for a product',
                     placeholder: 'Start typing...',
@@ -213,6 +262,36 @@ class Search extends Component {
                     </Paper>
                   )}
                 />
+
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="sort">Sort by</InputLabel>
+                    <Select
+                        value={this.state.values.sort}
+                        onChange={this.sortHandleChange}
+                        inputProps={{
+                            name: 'sort',
+                            id: 'sort-simple',
+                        }}
+                    >
+                    <MenuItem value={'price'}>Price</MenuItem>
+                    <MenuItem value={'discount'}>Discount</MenuItem>
+                    </Select>
+                </FormControl>
+                
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="order">Order</InputLabel>
+                    <Select
+                        value={this.state.values.order}
+                        onChange={this.orderHandleChange}
+                        inputProps={{
+                            name: 'order',
+                            id: 'order-simple',
+                        }}
+                    >
+                    <MenuItem value={'asc'}>Ascending</MenuItem>
+                    <MenuItem value={'desc'}>Descending</MenuItem>
+                    </Select>
+                </FormControl>
                 
                 </form>
             </div>
