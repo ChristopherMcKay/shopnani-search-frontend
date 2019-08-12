@@ -17,12 +17,13 @@ import Select from '@material-ui/core/Select';
 
 
 import { searchProducts } from '../redux/actions/productAction';
+import { getSuggestions } from '../redux/actions/suggestionAction';
+
 import { connect } from 'react-redux';
 
 
 function renderInputComponent(inputProps) {
   const { classes, inputRef = () => {}, ref, ...other } = inputProps;
-
   return (
     <TextField
       fullWidth
@@ -41,9 +42,8 @@ function renderInputComponent(inputProps) {
 }
 
 function renderSuggestion(suggestion, { query, isHighlighted }) {
-  const matches = match(suggestion.label, query);
-  const parts = parse(suggestion.label, matches);
-
+  const matches = match(suggestion, query);
+  const parts = parse(suggestion, matches);
   return (
     <MenuItem selected={isHighlighted} component="div">
       <div>
@@ -55,33 +55,11 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
       </div>
     </MenuItem>
   );
-}
-
-function getSuggestions(value) {
-
-
-    const inputValue = deburr(value.trim()).toLowerCase();
-    const inputLength = inputValue.length;
-    let count = 0;
-  
-    return inputLength === 0
-      ? []
-      : this.props.products.products.filter(suggestion => {
-          const keep =
-            count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
-  
-          if (keep) {
-            count += 1;
-          }
-  
-          return keep;
-        });
-}
-  
+} 
 
 
 function getSuggestionValue(suggestion) {
-  return suggestion.label;
+  return suggestion;
 }
 
 const styles = theme => ({
@@ -157,18 +135,14 @@ class Search extends Component {
     items: [],
     values: {
         sort: '',
-        order: ''
+        order: '',
+        minPrice: '',
+        maxPrice: ''
     }
   }
 
   handleSuggestionsFetchRequested = ({ value }) => {
-    // this.props.searchProducts(value)
-    // .then( stuff => {
-    //   this.setState({
-    //     stateSuggestions: stuff
-    //   });
-    // })
-    
+    this.props.getSuggestions(value);
   };
 
   handleSuggestionsClearRequested = () => {
@@ -191,7 +165,9 @@ class Search extends Component {
     let searchObj = {
         product: event.target.product.value,
         sort: event.target.sort.value,
-        order: event.target.order.value
+        order: event.target.order.value,
+        minPrice: event.target.minPrice.value,
+        maxPrice: event.target.maxPrice.value
     }
 
     this.props.searchProducts(searchObj);
@@ -201,21 +177,34 @@ class Search extends Component {
     this.setState({
         values: {
         order: this.state.values.order,
+        minPrice: this.state.values.minPrice,
+        maxPrice: this.state.values.maxPrice,
         [event.target.name]: event.target.value
         }
       });
   }
 
-  orderHandleChange = (event) => {
+  orderHandleChange = (name) => (event) => {
 
     this.setState({
         values: {
         sort: this.state.values.sort,
+        minPrice: this.state.values.minPrice,
+        maxPrice: this.state.values.maxPrice,
         [event.target.name]: event.target.value
         }
       });
   }
 
+  priceHandleChange = (name) => (event) => {
+      this.setState({
+          values: {
+            sort: this.state.values.sort,
+            order: this.state.values.order,
+            [event.target.name]: event.target.value            
+          }
+      })
+  }
 
   
     render() {
@@ -225,7 +214,7 @@ class Search extends Component {
 
         const autosuggestProps = {
           renderInputComponent,
-          suggestions: this.state.stateSuggestions,
+          suggestions: this.props.suggestions.suggestions,
           onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
           onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
           getSuggestionValue,
@@ -238,6 +227,70 @@ class Search extends Component {
             <div className={classes.paper}>
                
                 <form className={classes.form} onSubmit={this.handleSubmit}>
+
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="sort">Sort by</InputLabel>
+                    <Select
+                        value={this.state.values.sort}
+                        onChange={this.sortHandleChange}
+                        inputProps={{
+                            name: 'sort',
+                            id: 'sort-simple',
+                        }}
+                    >
+                    <MenuItem value={'price'}>Price</MenuItem>
+                    <MenuItem value={'discount'}>Discount</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="order">Order</InputLabel>
+                    <Select
+                        value={this.state.values.order}
+                        onChange={this.orderHandleChange('order')}
+                        inputProps={{
+                            name: 'order',
+                            id: 'order-simple',
+                        }}
+                    >
+                    <MenuItem value={'asc'}>Ascending</MenuItem>
+                    <MenuItem value={'desc'}>Descending</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <TextField
+                    id="standard-number"
+                    label="Minimum Price ₹"
+                    value={this.state.values.minPrice}
+                    onChange={this.priceHandleChange('minPrice')}
+                    type="number"
+                    className={classes.textField}
+                    inputProps={{
+                        name: 'minPrice',
+                    }}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                    margin="normal"
+                />
+
+                <br />
+
+                <TextField
+                    id="standard-number"
+                    label="Maximum Price ₹"
+                    value={this.state.values.maxPrice}
+                    onChange={this.priceHandleChange('maxPrice')}
+                    type="number"
+                    className={classes.textField}
+                    inputProps={{
+                        name: 'maxPrice',
+                    }}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                    margin="normal"
+                />
 
                 <Autosuggest
                   {...autosuggestProps}
@@ -263,35 +316,9 @@ class Search extends Component {
                   )}
                 />
 
-                <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="sort">Sort by</InputLabel>
-                    <Select
-                        value={this.state.values.sort}
-                        onChange={this.sortHandleChange}
-                        inputProps={{
-                            name: 'sort',
-                            id: 'sort-simple',
-                        }}
-                    >
-                    <MenuItem value={'price'}>Price</MenuItem>
-                    <MenuItem value={'discount'}>Discount</MenuItem>
-                    </Select>
-                </FormControl>
-                
-                <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="order">Order</InputLabel>
-                    <Select
-                        value={this.state.values.order}
-                        onChange={this.orderHandleChange}
-                        inputProps={{
-                            name: 'order',
-                            id: 'order-simple',
-                        }}
-                    >
-                    <MenuItem value={'asc'}>Ascending</MenuItem>
-                    <MenuItem value={'desc'}>Descending</MenuItem>
-                    </Select>
-                </FormControl>
+                <br />
+
+                <button>Search</button>
                 
                 </form>
             </div>
@@ -334,8 +361,9 @@ Search.propTypes = {
 
   const mapStateToProps = (state) => {
     return {
-      products: state.products
+      products: state.products,
+      suggestions: state.suggestions
     }
   }
 
-export default connect(mapStateToProps, { searchProducts })(withStyles(styles)(Search));
+export default connect(mapStateToProps, { searchProducts, getSuggestions })(withStyles(styles)(Search));

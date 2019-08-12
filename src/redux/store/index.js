@@ -3,9 +3,12 @@ import { createStore,applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import { productReducer } from '../reducers';
+import { suggestionReducer } from '../reducers';
+
 
 const reducers = combineReducers({
-    products: productReducer
+    products: productReducer,
+    suggestions: suggestionReducer
 });
 
 const initialState = {};

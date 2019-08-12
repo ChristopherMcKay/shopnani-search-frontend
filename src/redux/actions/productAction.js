@@ -17,12 +17,13 @@ export const searchProducts = (searchObj) => dispatch => {
 })
     
   // HTTP request to the backend for products
-    console.log('we made it here dawg')
-    Axios.get(`/search?q=${searchObj.product}&by=${searchObj.sort}&s=${searchObj.order}`, axiosConfig)
+    console.log(searchObj)
+    Axios.get(`/search?q=${searchObj.product}&by=${searchObj.sort}&s=${searchObj.order}&rl=${searchObj.minPrice}&ru=${searchObj.maxPrice}`, axiosConfig)
           .then(result => {
 
             let products = result.data
-            
+
+
             if(products.length > 0) {
                 dispatch({
                     type: GET_PRODUCTS,
