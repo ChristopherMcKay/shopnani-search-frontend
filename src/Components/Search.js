@@ -324,27 +324,7 @@ class Search extends Component {
             </div>
             <div>
 
-              { this.state.items.length !== 0 ? this.showFood() : null }
-              <form className={classes.form} onSubmit={this.foodSubmit}>
-                { this.state.items.length !== 0 ? <TextField
-                      id="date"
-                      label="Date"
-                      type="date"
-                      defaultValue="2017-05-24"
-                      className={classes.textField}
-                      InputLabelProps={{
-                      shrink: true,
-                      }}
-                  />  : null }
-                { this.state.items.length !== 0 ? <Button
-                      type="submit"
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}
-                  >
-                      Submit
-                  </Button> : null }
+             
                 </form>
 
                   
