@@ -238,9 +238,7 @@ class Search extends Component {
                 
                 </form>
             </div>
-            <div>
-
-            </div>
+          
             </Container>
             
         )
