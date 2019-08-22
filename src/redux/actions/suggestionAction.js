@@ -17,7 +17,11 @@ export const getSuggestions = (searchTerm) => dispatch => {
   // HTTP request to the backend for search suggestions
     Axios.get(`/autocomp?q=${searchTerm}`, axiosConfig)
           .then(result => {
-            let suggestions = result.data
+            let suggestions = []
+
+            for(let i = 0; i < 5; i++) {
+                suggestions.push(result.data[i]);
+            }
             
             if(suggestions.length > 0) {
                 dispatch({
