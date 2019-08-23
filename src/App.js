@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import Header from './Components/Header';
+import { Route, Switch } from 'react-router-dom'
+
+import SearchPage from './Components/SearchPage';
+import SearchResults from './Components/SearchResults';
 import Footer from './Components/Footer';
-import Search from './Components/Search';
-import ProductList from './Components/ProductList';
+
 
 import './App.css';
 
@@ -11,10 +13,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <Search />
-        <ProductList />
-        <Footer />
+
+          <Route exact path="/" component={SearchPage} />
+
+          <Route path="/search" component={SearchResults} />     
+          <Footer />
+            
       </div>
     );
   }

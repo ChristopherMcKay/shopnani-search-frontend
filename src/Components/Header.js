@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Logo from './Logo';
+import PartialLogo from './PartialLogo';
 import Menu from './Menu';
 
 
@@ -8,7 +8,7 @@ class Header extends Component {
         return (
             <div style={{display: 'inline-block', width: '100%'}}>
                 <div style={{float: 'left', margin: '2%'}}>
-                    <Logo />
+                    <PartialLogo />
                 </div>
                 <div style={{float: 'right', margin: '2%'}}>
                     <Menu />

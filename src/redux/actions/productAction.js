@@ -12,8 +12,11 @@ export const searchProducts = (searchObj) => dispatch => {
     }
   };
 
+  let searchTerm = searchObj.product
+
   dispatch({
-    type: GET_PRODUCTS_REQUEST
+    type: GET_PRODUCTS_REQUEST,
+    payload: searchTerm
 })
     
   // HTTP request to the backend for products
@@ -21,8 +24,8 @@ export const searchProducts = (searchObj) => dispatch => {
     Axios.get(`/search?q=${searchObj.product}&by=${searchObj.sort}&s=${searchObj.order}&rl=${searchObj.minPrice}&ru=${searchObj.maxPrice}`, axiosConfig)
           .then(result => {
 
-            let products = result.data
-
+            let products = result.data;
+              
 
             if(products.length > 0) {
                 dispatch({

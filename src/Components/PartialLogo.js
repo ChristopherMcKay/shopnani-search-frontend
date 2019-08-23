@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import logoImg from '../images/ShopNaniLogo-Main.png';
 import nani from '../images/Nani.png';
+import Link from '@material-ui/core/Link';
 
 
-class Logo extends Component {
+
+class PartialLogo extends Component {
     render() {
 
         const styles = {
@@ -11,10 +13,10 @@ class Logo extends Component {
         }
         return (
             <div>
-                <img src={nani} style={styles}></img>
+                <Link href={'#'}><img src={nani} style={styles}></img></Link>
             </div>
         )
     }
 }
 
-export default Logo;
+export default PartialLogo;

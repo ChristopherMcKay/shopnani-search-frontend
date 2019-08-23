@@ -3,7 +3,8 @@ import { GET_PRODUCTS, GET_PRODUCTS_REQUEST, GET_PRODUCTS_ERROR } from '../const
 let initialState = {
     products: [],
     isLoading: false,
-    error: null
+    error: null,
+    searchTerm: ''
 }
 
 export default (state = initialState, action) => {
@@ -14,6 +15,7 @@ export default (state = initialState, action) => {
         case GET_PRODUCTS_REQUEST:
             updated.isLoading = true;
             updated.error = null;
+            updated.searchTerm = action.payload
 
             return updated;
 

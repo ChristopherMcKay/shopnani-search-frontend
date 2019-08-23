@@ -30,8 +30,7 @@ class ProductList extends Component {
             <div>
                 {this.props.isLoading ? 
                 <div>
-                    <br />
-                    <CircularProgress style={{color: 'grey'}} disableShrink />
+                    <CircularProgress style={{color: 'grey', marginTop: '160px'}} disableShrink />
                 </div>
                 :
                 <Container component="main" maxWidth="sm" >
