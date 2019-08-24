@@ -5,36 +5,34 @@ const styles = {
     backgroundColor: 'lightgrey',
     display: 'inline-block',
     width: '100%',
-    padding: '10px',
+    padding: '0',
     position: 'absolute',
     bottom: '0',
-    left: '0'
-}
-
-const linkStyle = {
-    margin: '10px 20px',
+    left: '0',
+    fontFamily: 'Open Sans',
     fontWeight: 'bold',
     color: '#777'
 }
+
 
 class Footer extends Component {
     render() {
         return (
             <div style={styles}>
-                <div style={{float: 'left', margin: '10px, 0'}}>
-                    <Link href={'#'} color="inherit" style={linkStyle}>
+                <div style={{float: 'left', margin: '10px 2.1%'}}>
+                    <Link href={'#'} color="inherit" style={{marginRight: '25px'}}>
                         About
                     </Link>
-                    <Link href={'#'} color="inherit" style={linkStyle}>
+                    <Link href={'#'} color="inherit">
                         How Search Works
                     </Link>
                 </div>
 
-                <div style={{float: 'right'}}>
-                    <Link href={'#'} color="inherit" style={linkStyle}>
+                <div style={{float: 'right', margin: '10px 2.1%'}}>
+                    <Link href={'#'} color="inherit" style={{marginRight: '25px'}}>
                         Privacy
                     </Link>
-                    <Link href={'#'} color="inherit" style={linkStyle}>
+                    <Link href={'#'} color="inherit">
                         Terms
                     </Link>
                 </div>
