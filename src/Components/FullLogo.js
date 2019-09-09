@@ -10,10 +10,10 @@ class FullLogo extends Component {
         const styles = {
             height: '60px',
             marginTop: '17px',
-            marginLeft: '17px'
+            marginLeft: '2%',
         }
         return (
-            <div>
+            <div style={{display: 'inline'}}>
                 <Link href={'/'}><img src={logoImg} style={styles}></img></Link>
             </div>
         )

@@ -6,9 +6,6 @@ import parse from 'autosuggest-highlight/parse';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import InputBase from '@material-ui/core/InputBase';
@@ -62,11 +59,9 @@ const styles = theme => ({
       },
     },
     paper: {
-      marginTop: '20px',
-      marginLeft: '25px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+      marginLeft: '3%',
+      display: 'inline-block',
+      verticalAlign: '130%'
     },
     avatar: {
       margin: theme.spacing(1),
@@ -100,7 +95,9 @@ const styles = theme => ({
         justifyContent: 'space-between',
         maxHeight: '40px',
         width: '350px',
-        textAlign: 'center'
+        textAlign: 'center',
+        paddingLeft: '20px',
+        paddingRight: '20px',
       },
       suggestionsContainerOpen: {
         position: 'absolute',
@@ -127,8 +124,8 @@ const styles = theme => ({
         marginTop: theme.spacing(2),
       },
       input: {
-        fontFamily: '"Lucida Console", Monaco, monospace',
-        marginTop:'7px',
+        fontFamily: 'Open Sans',
+        marginTop:'4px',
         fontSize: '12px',
       }
   });
@@ -160,6 +157,8 @@ class Search extends Component {
     this.setState({
       ...this.state,
       [name]: newValue,
+    }, () => {
+      this.props.getSearchTerm(this.state.single)
     });
   };
 
@@ -198,7 +197,6 @@ class Search extends Component {
         return (
             <div className={classes.paper}>
                
-                <form className={classes.form} onSubmit={this.handleSubmit}>
 
 
                 <Container component="main" maxWidth="sm" className={classes.containerz}>
@@ -229,13 +227,12 @@ class Search extends Component {
                     <i className="material-icons" style={{color: '#00A991', marginTop: '7px '}}>
                         mic
                     </i>
-                <span style={{marginTop: '0px', fontSize: '28px', color: '#00A991'}}>|</span>
+                <span style={{marginBottom: '3px', fontSize: '28px', color: '#00A991'}}>|</span>
                     
                 	<button style={{border: 'none', backgroundColor: 'transparent', padding: '0', marginTop: '4px'}}><svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg></button>
 							
             </Container>
                 
-                </form>
             </div>
           
             

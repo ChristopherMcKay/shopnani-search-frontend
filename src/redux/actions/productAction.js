@@ -26,6 +26,7 @@ export const searchProducts = (searchObj) => dispatch => {
 
             let products = result.data;
               
+            console.log(products);
 
             if(products.length > 0) {
                 dispatch({
@@ -46,5 +47,12 @@ export const searchProducts = (searchObj) => dispatch => {
           })
           .catch( error => {
             console.log('we got an error', error)
+
+            let errorz =  'No results found. Please try a different search.';
+            
+                dispatch({
+                    type: GET_PRODUCTS_ERROR,
+                    payload: errorz
+                });
           })
   } 

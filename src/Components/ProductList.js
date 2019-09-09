@@ -2,42 +2,135 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
-
-
+import ReactPaginate from 'react-paginate';
+import { withStyles } from '@material-ui/core/styles';
 
 import Product from './Product';
+
+const styles = theme  => ({
+    container: {
+        color: 'blue',
+        fontFamily: 'Open Sans',
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        listStyleType: 'none'
+    },
+    previous: {
+        cursor: 'pointer'
+    },
+    next: {
+        cursor: 'pointer'
+
+    },
+    active: {
+        color: 'grey',
+    },
+    disabled: {
+        cursor: 'pointer'
+
+    }
+})
 
 
 class ProductList extends Component {
 
-    componentDidUpdate() {
-    }
+    state = {
+        offset: 0,
+        data: [],
+        elements: [],
+        perPage: 4,
+        currentPage: 0,
+    };
 
-    showAllProducts = () => {
-        return this.props.products.products.map((product) => {
+    loadData = () => {
+        console.log('this got called!!!!')
+        this.setState({
+            data: this.props.products.products,
+            pageCount: Math.ceil(this.props.products.products.length / this.state.perPage)
+          }, () => this.setElementsForCurrentPage());
+      }
+
+      componentDidUpdate(prevProps) {
+          if(this.props.products.products !== prevProps.products.products) {
+            this.loadData();
+          }
+      }
+
+      setElementsForCurrentPage() {
+        let elements = this.state.data
+                      .slice(this.state.offset, this.state.offset + this.state.perPage)
+                      .map(product => {
+                        return (
+                            <Product 
+                                product={product}
+                                key={product.productBaseInfoV1.productId}
+                            />
+                        )
+                      });
+
+        this.setState({ elements: elements });
+      }
+    
+
+
+    handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * this.state.perPage;
+        this.setState({ currentPage: selectedPage, offset: offset }, () => {
+          this.setElementsForCurrentPage();
+        });
+      }
+
+    showAllProducts = (data) => {
+        return data.map((product) => {
             return (
                 <Product 
                     product={product}
                     key={product.productBaseInfoV1.productId}
                 />
             )
-          })
+        })
     } 
     
 
     render() {
+
+        const { classes } = this.props;
+
         return (
-            <div>
-                {this.props.isLoading ? 
-                <div>
-                    <CircularProgress style={{color: 'grey', marginTop: '160px'}} disableShrink />
-                </div>
-                :
-                <Container component="main" maxWidth="sm" >
-                    {this.showAllProducts()}
+            <div style={{display: 'inline-block', marginBottom: '100px'}}>
+                {
+                <Container component="main" maxWidth="md" style={{marginTop: '170px', marginLeft: '260px'}}>
+                    {this.props.isLoading ? 
+                        <div>
+                        <CircularProgress style={{color: 'grey', marginLeft: '450px', marginTop: '250px'}} disableShrink />
+                    </div>
+                        :
+                        <div>
+
+                        {this.state.elements}
+                        
+                        <ReactPaginate
+                            previousLabel={"← Previous"}
+                            nextLabel={"Next →"}
+                            breakLabel={<span className="gap">...</span>}
+                            pageCount={this.state.pageCount}
+                            onPageChange={this.handlePageClick}
+                            forcePage={this.state.currentPage}
+                            containerClassName={classes.container}
+                            previousLinkClassName={classes.previous}
+                            nextLinkClassName={classes.next}
+                            disabledClassName={classes.disabled}
+                            activeClassName={classes.active}
+                            />
+                        </div>
+                        }
                 </Container>
             }
-            { this.props.error ? <div> <br /> <h3>{this.props.error}</h3> </div> : null}
+            { this.props.error ?
+                <Container component="main" maxWidth="md" style={{marginTop: '200px', marginLeft: '500px'}}>
+                    <h3>{this.props.error}</h3> 
+                </Container> : null}
                 
             </div>
     
@@ -53,4 +146,4 @@ const mapStateToProps = (store) => {
     }
   }
   
-  export default connect(mapStateToProps, null)(ProductList);
+  export default connect(mapStateToProps, null)(withStyles(styles)(ProductList));

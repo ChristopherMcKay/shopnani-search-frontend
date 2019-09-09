@@ -5,6 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 
 const menuStyle = {
+    display: 'inline',
+    marginTop: '10px'
 }
 
 class Menuz extends Component {
@@ -34,7 +36,7 @@ class Menuz extends Component {
     const open = Boolean(this.state.anchorEl);
 
         return (
-            <div style={{margin: '7px'}}>
+            <React.Fragment>
                 <Button aria-controls="fade-menu" aria-haspopup="true" onClick={this.handleClick} style={menuStyle}>
                 <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} viewBox="0 0 18 18"><path d="M2 13.5h14V12H2v1.5zm0-4h14V8H2v1.5zM2 4v1.5h14V4H2z" /></svg>
                 </Button>
@@ -50,7 +52,7 @@ class Menuz extends Component {
                     <MenuItem onClick={this.handleClose}>Search</MenuItem>
                     <MenuItem onClick={this.handleClose}>Coupons</MenuItem>
                 </Menu> 
-            </div>
+            </React.Fragment>
         )
     }
 }

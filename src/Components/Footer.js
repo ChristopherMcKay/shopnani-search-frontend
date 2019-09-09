@@ -8,10 +8,10 @@ const styles = {
     padding: '0',
     position: 'absolute',
     bottom: '0',
-    left: '0',
     fontFamily: 'Open Sans',
+    fontSize: '13px',
     fontWeight: 'bold',
-    color: '#777'
+    color: '#777',
 }
 
 

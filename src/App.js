@@ -18,7 +18,6 @@ class App extends Component {
 
           <Route path="/search" component={SearchResults} />     
           <Footer />
-            
       </div>
     );
   }
