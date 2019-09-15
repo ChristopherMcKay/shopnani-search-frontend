@@ -9,25 +9,32 @@ import Product from './Product';
 
 const styles = theme  => ({
     container: {
-        color: 'blue',
+        color: '#1a89e6',
         fontFamily: 'Open Sans',
+        fontSize: '',
         display: 'flex',
+        width: '300px',
         justifyContent: 'space-evenly',
-        listStyleType: 'none'
+        listStyleType: 'none',
+        fontWeight: '600'
     },
     previous: {
         cursor: 'pointer'
     },
     next: {
         cursor: 'pointer'
-
     },
     active: {
         color: 'grey',
     },
     disabled: {
+        display: 'none'
+    },
+    activeLink: {
         cursor: 'pointer'
-
+    },
+    page: {
+        cursor: 'pointer'
     }
 })
 
@@ -38,7 +45,7 @@ class ProductList extends Component {
         offset: 0,
         data: [],
         elements: [],
-        perPage: 4,
+        perPage: 8,
         currentPage: 0,
     };
 
@@ -63,7 +70,6 @@ class ProductList extends Component {
                         return (
                             <Product 
                                 product={product}
-                                key={product.productBaseInfoV1.productId}
                             />
                         )
                       });
@@ -81,16 +87,6 @@ class ProductList extends Component {
         });
       }
 
-    showAllProducts = (data) => {
-        return data.map((product) => {
-            return (
-                <Product 
-                    product={product}
-                    key={product.productBaseInfoV1.productId}
-                />
-            )
-        })
-    } 
     
 
     render() {
@@ -106,24 +102,32 @@ class ProductList extends Component {
                         <CircularProgress style={{color: 'grey', marginLeft: '450px', marginTop: '250px'}} disableShrink />
                     </div>
                         :
-                        <div>
+                        null
+                        }
 
-                        {this.state.elements}
-                        
-                        <ReactPaginate
-                            previousLabel={"← Previous"}
-                            nextLabel={"Next →"}
-                            breakLabel={<span className="gap">...</span>}
-                            pageCount={this.state.pageCount}
-                            onPageChange={this.handlePageClick}
-                            forcePage={this.state.currentPage}
-                            containerClassName={classes.container}
-                            previousLinkClassName={classes.previous}
-                            nextLinkClassName={classes.next}
-                            disabledClassName={classes.disabled}
-                            activeClassName={classes.active}
-                            />
-                        </div>
+                        {this.state.elements.length > 0 & this.props.isLoading == false ? 
+                            <div>
+
+                                {this.state.elements}
+                                <ReactPaginate
+                                previousLabel={"← Previous"}
+                                nextLabel={"Next →"}
+                                breakLabel={<span className="gap">...</span>}
+                                pageCount={this.state.pageCount}
+                                onPageChange={this.handlePageClick}
+                                forcePage={this.state.currentPage}
+                                containerClassName={classes.container}
+                                previousLinkClassName={classes.previous}
+                                nextLinkClassName={classes.next}
+                                disabledClassName={classes.disabled}
+                                activeClassName={classes.active}
+                                activeLinkClassName={classes.activeLink}
+                                pageClassName={classes.page}
+                                />
+                            </div>
+
+                        :
+                            null
                         }
                 </Container>
             }

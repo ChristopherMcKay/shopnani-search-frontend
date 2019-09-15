@@ -21,13 +21,10 @@ render() {
     <PopupState variant="popover" popupId="demo-popup-menu">
       {popupState => (
         <React.Fragment>
-          <Button variant="contained" style={styles} {...bindTrigger(popupState)}>
+          <Button variant="contained" style={styles}>
             Sign In
           </Button>
-          <Menu {...bindMenu(popupState)}>
-            <MenuItem onClick={popupState.close}>Cake</MenuItem>
-            <MenuItem onClick={popupState.close}>Pie</MenuItem>
-          </Menu>
+          
         </React.Fragment>
       )}
     </PopupState>

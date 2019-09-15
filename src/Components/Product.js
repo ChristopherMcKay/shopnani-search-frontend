@@ -6,6 +6,7 @@ import Link from '@material-ui/core/Link';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FlipartImg from '../images/flipkart.png';
+import SuvidealsImg from '../images/suvideals.png';
 
 
 const styles = theme => ({
@@ -46,11 +47,18 @@ const styles = theme => ({
 class Product extends Component {
 
     getProductInfo = () => {
-        return this.props.product.categorySpecificInfoV1.keySpecs.map((product) => {
-            return(
-                <li style={{fontSize: '13px'}}>{product}</li>
-            )
-        })
+            if(this.props.product.features.length > 0) {
+
+            
+            return this.props.product.features.map((product) => {
+                return(
+                    <li style={{fontSize: '13px'}}>{product}</li>
+                )
+            })
+            
+        } else {
+            return null;
+        }
     }
 
     render() {
@@ -58,12 +66,12 @@ class Product extends Component {
 
         const { classes } = this.props;
 
-        const  product  = this.props.product.productBaseInfoV1;
+        const  product  = this.props.product;
 
         return (
             <Paper className={classes.root}>
                 <div style={{display: 'inline-block', width: '220px', verticalAlign: 'text-top'}}>
-                    <img src={product.imageUrls['200x200']} className={classes.img}></img>
+                    <img src={product.image} className={classes.img}></img>
                     <FormControlLabel
                     value="end"
                     control={<Checkbox color="primary" />}
@@ -72,7 +80,7 @@ class Product extends Component {
                 />
                 </div>
                 <div className={classes.info}>
-                    <Link href={product.productUrl} className={classes.link}>
+                    <Link href={product.link} className={classes.link}>
                         {product.title}
                     </Link>
                     <ul>
@@ -81,14 +89,23 @@ class Product extends Component {
                     <br />
                 </div>
                 <div className={classes.order}>
-                        <span style={{fontSize: '20px', fontWeight: 'bold'}}>₹{product.flipkartSpecialPrice.amount}</span>
+                        <span style={{fontSize: '20px', fontWeight: 'bold'}}>₹{product.sellingPrice}</span>
                         <br />
-                        <span style={{color: 'grey', textDecoration: 'line-through'}}>₹{product.flipkartSellingPrice.amount}</span><span style={{color: 'green', fontWeight: 'bold'}}> {product.discountPercentage}% off</span>
+                        <span style={{color: 'grey', textDecoration: 'line-through'}}>₹{product.originalPrice}</span><span style={{color: 'green', fontWeight: 'bold'}}> {product.discountPercentage}% off</span>
                         <br />
                         <span style={{fontSize: '16px', fontWeight: 'bold'}}>Available on</span>
                         <br />
-                        <Link href={product.productUrl}>
-                            <img src={FlipartImg} width={110}></img>
+                        <Link href={product.link}>
+                            {product.seller == 'flipkart' ? 
+                            <img src={FlipartImg} width={100}></img> 
+                            :
+                            null   
+                        }
+                        {product.seller == 'suviDeals' ? 
+                            <img src={SuvidealsImg} width={90}></img> 
+                            :
+                            null   
+                        }
                         </Link>
                         
                 </div>

@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-
+import { withStyles } from '@material-ui/core/styles';
 
 
 const styles = {
@@ -17,6 +17,15 @@ const styles = {
     position: 'fixed',
     left: '0',
 }
+
+const styled = theme  => ({
+    checkbox: {
+        color: '#1a89e6',
+        '&$checked': {
+            color: '#1a89e6',
+          }
+    }
+})
 
 class Params extends Component {
 
@@ -37,6 +46,9 @@ class Params extends Component {
   }
 
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div style={styles}>
                 <p style={{fontWeight: 'bold', fontFamily: 'Open Sans'}}>PRICE</p>
@@ -49,14 +61,15 @@ class Params extends Component {
                     max={100000}
                     step={20000}
                     marks
+                    className={classes.checkbox}
                 />
-                <span style={{color: 'grey'}}>..................................................</span>
+                <span style={{color: 'grey', display: 'block'}}>..................................................</span>
 
                 <p style={{fontWeight: 'bold', fontFamily: 'Open Sans'}}>STORE</p>
 
                 <FormControlLabel
                     value="end"
-                    control={<Checkbox color="primary" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                    control={<Checkbox className={classes.checkbox} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
                     checkedIcon={<CheckBoxIcon fontSize="small" />} />}
                     label={<Typography style={{fontSize: '12px'}}>Amazon (IN)</Typography>}
                     labelPlacement="end"
@@ -64,7 +77,7 @@ class Params extends Component {
                 <br />
                 <FormControlLabel
                     value="end"
-                    control={<Checkbox color="primary" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                    control={<Checkbox className={classes.checkbox} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
                     checkedIcon={<CheckBoxIcon fontSize="small" />} />}
                     label={<Typography style={{fontSize: '12px'}}>Flipkart</Typography>}
                     checked="true"
@@ -73,7 +86,7 @@ class Params extends Component {
                 <br />
                 <FormControlLabel
                     value="end"
-                    control={<Checkbox color="primary" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                    control={<Checkbox className={classes.checkbox} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
                     checkedIcon={<CheckBoxIcon fontSize="small" />} />}
                     label={<Typography style={{fontSize: '12px'}}>ShopClues</Typography>}
                     labelPlacement="end"
@@ -81,12 +94,12 @@ class Params extends Component {
                 <br />
                 <FormControlLabel
                     value="end"
-                    control={<Checkbox color="primary" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                    control={<Checkbox className={classes.checkbox} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
                     checkedIcon={<CheckBoxIcon fontSize="small" />} />}
                     label={<Typography style={{fontSize: '12px'}}>TataCliq</Typography>}
                     labelPlacement="end"
                 />
-                <span style={{color: 'grey'}}>..................................................</span>
+                <span style={{color: 'grey', display: 'block'}}>..................................................</span>
 
                 <p style={{fontWeight: 'bold', fontFamily: 'Open Sans'}}>USER RATINGS</p>
                 
@@ -104,4 +117,4 @@ class Params extends Component {
     }
 }
 
-export default Params;
+export default withStyles(styled)(Params);
