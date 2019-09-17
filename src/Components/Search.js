@@ -172,7 +172,8 @@ class Search extends Component {
         sort: '',
         order: '',
         minPrice: '',
-        maxPrice: ''
+        maxPrice: '',
+        sellers: ''
     }
 
     this.props.searchProducts(searchObj);

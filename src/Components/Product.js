@@ -80,7 +80,7 @@ class Product extends Component {
                 />
                 </div>
                 <div className={classes.info}>
-                    <Link href={product.link} className={classes.link}>
+                    <Link href={product.link} className={classes.link} target="_blank">
                         {product.title}
                     </Link>
                     <ul>
@@ -95,7 +95,7 @@ class Product extends Component {
                         <br />
                         <span style={{fontSize: '16px', fontWeight: 'bold'}}>Available on</span>
                         <br />
-                        <Link href={product.link}>
+                        <Link href={product.link} target="_blank">
                             {product.seller == 'flipkart' ? 
                             <img src={FlipartImg} width={100}></img> 
                             :

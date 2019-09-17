@@ -27,13 +27,48 @@ const styled = theme  => ({
     }
 })
 
+
+const marks = [
+    {
+      value: 0,
+      label: '0',
+    },
+    {
+      value: 20000,
+      label: '20K',
+    },
+    {
+      value: 40000,
+      label: '40K',
+    },
+    {
+      value: 60000,
+      label: '60K',
+    },
+    {
+        value: 80000,
+        label: '80K',
+    },
+    {
+        value: 100000,
+        label: '100K',
+    },
+  ];
+
 class Params extends Component {
 
     state = {
-        value: [0, 100000]
+        value: [0, 100000],
+        sellers: ''
     }
 
  handleChange = (event, newValue) => {
+    this.setState({
+        value: newValue
+    })
+  }
+
+  handleChangeCommit = (event, newValue) => {
     this.setState({
         value: newValue
     }, () => {
@@ -45,9 +80,65 @@ class Params extends Component {
     return `${value}°C`;
   }
 
+  amazonCheck = (event) => {
+    if(event.target.checked === true) {
+        this.setState({
+            sellers: this.state.sellers + 'amazon-'
+        }, () => {
+            this.props.getSellers(this.state.sellers)
+        })
+    }
+    else {
+        this.setState({
+            sellers: this.state.sellers.replace('amazon-', '')
+        }, () => {
+            this.props.getSellers(this.state.sellers)
+        })
+    }
+  }
+
+  flipkartCheck = (event) => {
+    if(event.target.checked === true) {
+        this.setState({
+            sellers: this.state.sellers + 'flipkart-'
+        }, () => {
+            this.props.getSellers(this.state.sellers)
+        })
+    }
+    else {
+        this.setState({
+            sellers: this.state.sellers.replace('flipkart-', '')
+        }, () => {
+            this.props.getSellers(this.state.sellers)
+        })
+    }
+  }
+
+  suviDealsCheck = (event) => {
+    if(event.target.checked === true) {
+        this.setState({
+            sellers: this.state.sellers + 'suviDeals-'
+        }, () => {
+            this.props.getSellers(this.state.sellers)
+        })
+    }
+    else {
+        this.setState({
+            sellers: this.state.sellers.replace('suviDeals-', '')
+        }, () => {
+            this.props.getSellers(this.state.sellers)
+        })
+    }
+  }
+
+  valueLabelFormat = (value) => {
+    return marks.findIndex(mark => mark.value === value) + 1;
+  }
+
     render() {
 
         const { classes } = this.props;
+
 
         return (
             <div style={styles}>
@@ -55,12 +146,13 @@ class Params extends Component {
                 <Slider
                     value={this.state.value}
                     onChange={this.handleChange}
-                    valueLabelDisplay="auto"
-                    aria-label="custom thumb label"
+                    onChangeCommitted={this.handleChangeCommit}
+                    valueLabelFormat={this.valueLabelFormat}
+                    aria-labelledby="discrete-slider-restrict"
                     getAriaValueText={this.valuetext}
                     max={100000}
-                    step={20000}
-                    marks
+                    step={null}
+                    marks={marks}
                     className={classes.checkbox}
                 />
                 <span style={{color: 'grey', display: 'block'}}>..................................................</span>
@@ -69,7 +161,7 @@ class Params extends Component {
 
                 <FormControlLabel
                     value="end"
-                    control={<Checkbox className={classes.checkbox} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                    control={<Checkbox className={classes.checkbox} onChange={this.amazonCheck} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
                     checkedIcon={<CheckBoxIcon fontSize="small" />} />}
                     label={<Typography style={{fontSize: '12px'}}>Amazon (IN)</Typography>}
                     labelPlacement="end"
@@ -77,26 +169,17 @@ class Params extends Component {
                 <br />
                 <FormControlLabel
                     value="end"
-                    control={<Checkbox className={classes.checkbox} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                    control={<Checkbox className={classes.checkbox} onChange={this.flipkartCheck} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
                     checkedIcon={<CheckBoxIcon fontSize="small" />} />}
                     label={<Typography style={{fontSize: '12px'}}>Flipkart</Typography>}
-                    checked="true"
                     labelPlacement="end"
                 />
                 <br />
                 <FormControlLabel
                     value="end"
-                    control={<Checkbox className={classes.checkbox} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                    control={<Checkbox className={classes.checkbox} onChange={this.suviDealsCheck} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
                     checkedIcon={<CheckBoxIcon fontSize="small" />} />}
-                    label={<Typography style={{fontSize: '12px'}}>ShopClues</Typography>}
-                    labelPlacement="end"
-                />
-                <br />
-                <FormControlLabel
-                    value="end"
-                    control={<Checkbox className={classes.checkbox} color="default" icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-                    checkedIcon={<CheckBoxIcon fontSize="small" />} />}
-                    label={<Typography style={{fontSize: '12px'}}>TataCliq</Typography>}
+                    label={<Typography style={{fontSize: '12px'}}>suviDeals</Typography>}
                     labelPlacement="end"
                 />
                 <span style={{color: 'grey', display: 'block'}}>..................................................</span>

@@ -4,7 +4,9 @@ let initialState = {
     products: [],
     isLoading: false,
     error: null,
-    searchTerm: ''
+    searchTerm: '',
+    currentPage: 0,
+    offset: 0
 }
 
 export default (state = initialState, action) => {

@@ -41,7 +41,8 @@ class SearchHeader extends Component {
         sort: '',
         order: '',
         minPrice: '',
-        maxPrice: ''
+        maxPrice: '',
+        sellers: ''
     }
 
     handleSubmit = (event) => {
@@ -55,7 +56,8 @@ class SearchHeader extends Component {
             sort: this.state.sort,
             order: this.state.order,
             minPrice: this.state.minPrice,
-            maxPrice: this.state.maxPrice
+            maxPrice: this.state.maxPrice,
+            sellers: this.state.sellers
         }
     
         this.props.searchProducts(searchObj);
@@ -67,6 +69,14 @@ class SearchHeader extends Component {
         this.setState({
             product: searchTerm
         })
+      }
+
+      getSellers = (newSellers) => {
+          this.setState({
+              sellers: newSellers
+          }, () => {
+              this.handleSubmit();
+          })
       }
 
       getSortAndOrder = (sortOrder) => {
@@ -114,6 +124,8 @@ class SearchHeader extends Component {
         this.setState({
             minPrice: minMax[0],
             maxPrice: minMax[1]
+        }, () => {
+            this.handleSubmit();
         })
     }
 
@@ -141,6 +153,7 @@ class SearchHeader extends Component {
                 </div>
                 <Params 
                     getMinMaxPrice={this.getMinMaxPrice}
+                    getSellers={this.getSellers}
                 />
                 </form>
             </React.Fragment>

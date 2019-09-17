@@ -20,13 +20,20 @@ export const searchProducts = (searchObj) => dispatch => {
 })
     
   // HTTP request to the backend for products
-    console.log(searchObj)
-    Axios.get(`/search?q=${searchObj.product}&by=${searchObj.sort}&s=${searchObj.order}&rl=${searchObj.minPrice}&ru=${searchObj.maxPrice}`, axiosConfig)
+    console.log('before api call')
+
+    let startTime = new Date().getTime();
+
+    Axios.get(`/search?q=${searchObj.product}&market=${searchObj.sellers}&by=${searchObj.sort}&s=${searchObj.order}&rl=${searchObj.minPrice}&ru=${searchObj.maxPrice}`, axiosConfig)
           .then(result => {
 
             let products = result.data;
+
+            let finishTime = new Date().getTime();
+
+            let performance = (finishTime - startTime) / 1000;
               
-            console.log(products);
+            console.log(`Performance is ${performance} seconds`);
 
             if(products.length > 0) {
                 dispatch({

@@ -49,10 +49,12 @@ class ProductList extends Component {
         currentPage: 0,
     };
 
+
     loadData = () => {
-        console.log('this got called!!!!')
         this.setState({
             data: this.props.products.products,
+            currentPage: this.props.products.currentPage,
+            offset: this.props.products.offset,
             pageCount: Math.ceil(this.props.products.products.length / this.state.perPage)
           }, () => this.setElementsForCurrentPage());
       }
