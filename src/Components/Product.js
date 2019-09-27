@@ -7,6 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FlipartImg from '../images/flipkart.png';
 import SuvidealsImg from '../images/suvideals.png';
+import AmazonImg from '../images/amazon.png';
 
 
 const styles = theme => ({
@@ -61,6 +62,12 @@ class Product extends Component {
         }
     }
 
+    compareChange = () => {
+        let product = this.props.product;
+
+        this.props.compareChange(product);
+    }
+
     render() {
 
 
@@ -74,7 +81,7 @@ class Product extends Component {
                     <img src={product.image} className={classes.img}></img>
                     <FormControlLabel
                     value="end"
-                    control={<Checkbox color="primary" />}
+                    control={<Checkbox color="primary" onChange={this.compareChange} />}
                     label="Add to Compare"
                     labelPlacement="end"
                 />
@@ -103,6 +110,12 @@ class Product extends Component {
                         }
                         {product.seller == 'suviDeals' ? 
                             <img src={SuvidealsImg} width={90}></img> 
+                            :
+                            null   
+                        }
+
+                        {product.seller == 'amazon' ? 
+                            <img src={AmazonImg} width={70} style={{marginTop: '10px'}}></img> 
                             :
                             null   
                         }

@@ -60,7 +60,9 @@ class SearchHeader extends Component {
             sellers: this.state.sellers
         }
     
-        this.props.searchProducts(searchObj);
+        this.props.searchProducts(searchObj, () => {
+            console.log('finished!')
+        });
 
         this.props.history.push('/search');
       }

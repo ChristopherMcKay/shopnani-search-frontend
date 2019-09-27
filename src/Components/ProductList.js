@@ -35,6 +35,30 @@ const styles = theme  => ({
     },
     page: {
         cursor: 'pointer'
+    },
+    compare: {
+        width: '400px',
+        height: '310px',
+        position: 'fixed',
+        bottom: '50px',
+        right: '25px',
+        border: '2px solid grey',
+        paddingTop: '20px',
+        backgroundColor: 'white'
+    },
+    products: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+    },
+    buttons: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        marginTop: '30px',
+    },
+    img: {
+        width: '70px'
     }
 })
 
@@ -47,6 +71,7 @@ class ProductList extends Component {
         elements: [],
         perPage: 8,
         currentPage: 0,
+        compareProducts: []
     };
 
 
@@ -65,6 +90,38 @@ class ProductList extends Component {
           }
       }
 
+      compareChange = (product) => {
+        let exists = false;
+
+        for(let i = 0; i < this.state.compareProducts.length; i++) {
+            if(this.state.compareProducts[i].title === product.title) {
+                exists = true;
+            }
+        }
+
+        if(!exists) {
+            let newArr = this.state.compareProducts;
+            newArr.push(product);
+            this.setState({
+                compareProducts: newArr
+            }, () => {
+                console.log(this.state.compareProducts)
+            })
+        }
+        else {
+            let currentProducts = this.state.compareProducts;
+
+            let newArr = currentProducts.filter(pro => pro.title !== product.title)
+
+            this.setState({
+                compareProducts: newArr
+            }, () => {
+                console.log(this.state.compareProducts)
+            })
+        }
+
+      }
+
       setElementsForCurrentPage() {
         let elements = this.state.data
                       .slice(this.state.offset, this.state.offset + this.state.perPage)
@@ -72,6 +129,7 @@ class ProductList extends Component {
                         return (
                             <Product 
                                 product={product}
+                                compareChange={this.compareChange}
                             />
                         )
                       });
@@ -137,6 +195,48 @@ class ProductList extends Component {
                 <Container component="main" maxWidth="md" style={{marginTop: '200px', marginLeft: '500px'}}>
                     <h3>{this.props.error}</h3> 
                 </Container> : null}
+
+                {
+                    this.state.compareProducts.length > 0 ? 
+                    <div className={classes.compare}>
+
+                        <div className={classes.products}>
+                            <div style={{textAlign: 'center'}}>
+                                <img src={this.state.compareProducts[0].image} className={classes.img}></img>
+                                <p>{this.state.compareProducts[0].title.slice(0, 15)}...</p>
+                            </div>
+
+                            { this.state.compareProducts[1] ?
+                            <div style={{textAlign: 'center'}}>
+                                <img src={this.state.compareProducts[1].image} className={classes.img}></img>
+                                <p>{this.state.compareProducts[1].title.slice(0, 15)}...</p>
+                            </div>
+                            :
+                            null
+                            }
+                        </div>
+
+                        <div className={classes.buttons}>
+        
+                            <button style={{width: '160px', height: '50px', backgroundColor: 'white', fontSize: '16px', border: 'none', fontWeight: 'bold', fontFamily: 'Open Sans'}}>
+                                REMOVE ALL
+                            </button>
+
+                            { this.state.compareProducts[1] ?
+                            <button style={{width: '160px', height: '50px', backgroundColor: '#1a89e6', fontSize: '16px', color: 'white', border: 'none', fontWeight: 'bold',   fontFamily: 'Open Sans'}}>
+                                COMPARE {this.state.compareProducts.length}
+                            </button>
+                            :
+                            null
+                            }
+
+                        </div>
+
+                    </div>
+                    :
+                    null
+                }
+                
                 
             </div>
     
