@@ -43,7 +43,7 @@ const styles = theme  => ({
         bottom: '50px',
         right: '25px',
         border: '2px solid grey',
-        paddingTop: '20px',
+        paddingTop: '30px',
         backgroundColor: 'white'
     },
     products: {
@@ -76,6 +76,8 @@ class ProductList extends Component {
 
 
     loadData = () => {
+        console.log('STILL RUNNING!!!')
+
         this.setState({
             data: this.props.products.products,
             currentPage: this.props.products.currentPage,
@@ -85,6 +87,9 @@ class ProductList extends Component {
       }
 
       componentDidUpdate(prevProps) {
+
+          console.log(this.props.products.products !== prevProps.products.products)
+
           if(this.props.products.products !== prevProps.products.products) {
             this.loadData();
           }
@@ -147,7 +152,13 @@ class ProductList extends Component {
         });
       }
 
-    
+    removeCompareProducts = () => {
+        let newArr = [];
+
+        this.setState({
+            compareProducts: newArr
+        })
+    }
 
     render() {
 
@@ -218,13 +229,13 @@ class ProductList extends Component {
 
                         <div className={classes.buttons}>
         
-                            <button style={{width: '160px', height: '50px', backgroundColor: 'white', fontSize: '16px', border: 'none', fontWeight: 'bold', fontFamily: 'Open Sans'}}>
+                            <button style={{width: '160px', height: '50px', backgroundColor: 'white', fontSize: '16px', border: 'none', fontWeight: 'bold', fontFamily: 'Open Sans', cursor: 'pointer'}} onClick={this.removeCompareProducts}>
                                 REMOVE ALL
                             </button>
 
                             { this.state.compareProducts[1] ?
-                            <button style={{width: '160px', height: '50px', backgroundColor: '#1a89e6', fontSize: '16px', color: 'white', border: 'none', fontWeight: 'bold',   fontFamily: 'Open Sans'}}>
-                                COMPARE {this.state.compareProducts.length}
+                            <button style={{width: '160px', height: '50px', backgroundColor: '#1a89e6', fontSize: '16px', color: 'white', border: 'none', fontWeight: 'bold',   fontFamily: 'Open Sans', cursor: 'pointer'}}>
+                                COMPARE  <span style={{padding: '3px', backgroundColor: '#1571d1'}}> {this.state.compareProducts.length}</span>
                             </button>
                             :
                             null

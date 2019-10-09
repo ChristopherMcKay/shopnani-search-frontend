@@ -1,4 +1,5 @@
-import { GET_PRODUCTS, GET_PRODUCTS_REQUEST, GET_PRODUCTS_ERROR } from '../constants/product';
+import { GET_PRODUCTS, GET_PRODUCTS_REQUEST, GET_PRODUCTS_ERROR, SORT_PRODUCTS } from '../constants/product';
+import { updateExpression } from '@babel/types';
 
 let initialState = {
     products: [],
@@ -6,7 +7,8 @@ let initialState = {
     error: null,
     searchTerm: '',
     currentPage: 0,
-    offset: 0
+    offset: 0,
+    sorting: false
 }
 
 export default (state = initialState, action) => {
@@ -17,7 +19,10 @@ export default (state = initialState, action) => {
         case GET_PRODUCTS_REQUEST:
             updated.isLoading = true;
             updated.error = null;
-            updated.searchTerm = action.payload
+
+            if(action.payload) {
+                updated.searchTerm = action.payload
+            }
 
             return updated;
 
@@ -33,6 +38,15 @@ export default (state = initialState, action) => {
             updated.products = action.payload;
             updated.isLoading = false;
             updated.error = null;
+
+            return updated;
+
+        case SORT_PRODUCTS:
+
+            updated.products = action.payload;
+            updated.isLoading = false;
+            updated.error = null;
+            updated.sorting = true;
 
             return updated;
 

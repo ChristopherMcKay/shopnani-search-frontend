@@ -1,6 +1,8 @@
-import { GET_PRODUCTS, GET_PRODUCTS_REQUEST, GET_PRODUCTS_ERROR } from '../constants/product';
+import { GET_PRODUCTS, GET_PRODUCTS_REQUEST, GET_PRODUCTS_ERROR, SORT_PRODUCTS } from '../constants/product';
+
 import Axios from '../Axios/Axios';
 import deburr from 'lodash/deburr';
+import store from '../store/index';
 
 
 export const searchProducts = (searchObj) => dispatch => {
@@ -63,3 +65,44 @@ export const searchProducts = (searchObj) => dispatch => {
                 });
           })
   } 
+
+  export const sortProducts = (params) => dispatch => {
+
+    dispatch({
+      type: GET_PRODUCTS_REQUEST,
+      payload: null
+  })
+
+    let state = store.getState();
+
+    let products = state.products.products;
+
+    let newProducts = products.sort((a, b) => {
+      if(params.order === "desc") {
+          switch(params.sort) {
+              case "discount":
+                  return b.discountPercentage - a.discountPercentage
+                  break
+              case "price": 
+              default:
+                  return b.sellingPrice - a.sellingPrice
+          }
+      } else if(params.order === "asc") {
+          switch(params.sort) {
+              case "discount":
+                  return a.discountPercentage - b.discountPercentage
+                  break
+              case "price": 
+              default:
+                  return a.sellingPrice - b.sellingPrice
+          }
+      }
+  })
+
+  console.log(newProducts)
+
+                  dispatch({
+                      type: SORT_PRODUCTS,
+                      payload: newProducts
+                  });
+} 

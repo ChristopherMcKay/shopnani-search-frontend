@@ -6,7 +6,7 @@ import LoginButton from './LoginButton';
 import Sort from './Sort';
 import Params from './Params';
 
-import { searchProducts } from '../redux/actions/productAction';
+import { searchProducts, sortProducts } from '../redux/actions/productAction';
 
 import { withRouter } from "react-router";
 
@@ -170,4 +170,4 @@ const mapStateToProps = (state) => {
     }
   }
 
-export default connect(mapStateToProps, { searchProducts })(withRouter(SearchHeader));
+export default connect(mapStateToProps, { searchProducts, sortProducts })(withRouter(SearchHeader));
