@@ -76,7 +76,6 @@ class ProductList extends Component {
 
 
     loadData = () => {
-        console.log('STILL RUNNING!!!')
 
         this.setState({
             data: this.props.products.products,
@@ -88,9 +87,8 @@ class ProductList extends Component {
 
       componentDidUpdate(prevProps) {
 
-          console.log(this.props.products.products !== prevProps.products.products)
 
-          if(this.props.products.products !== prevProps.products.products) {
+          if(this.props !== prevProps) {
             this.loadData();
           }
       }

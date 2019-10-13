@@ -82,39 +82,46 @@ class SearchHeader extends Component {
       }
 
       getSortAndOrder = (sortOrder) => {
+
+        let params = {}
+
         switch(sortOrder) {
 
             case 0:
-                this.setState({
+                params = {
                     sort: '',
                     order: ''
-                }, () => {
-                    this.handleSubmit();
-                })
+                }
+
+                this.props.sortProducts(params)
+
                 break;
             case 1:
-                this.setState({
+
+                params = {
                     sort: 'price',
                     order: 'asc'
-                }, () => {
-                    this.handleSubmit();
-                })
+                }
+                this.props.sortProducts(params)
+
                 break;
             case 2:
-                this.setState({
-                    sort: 'price',
-                    order: 'desc'
-                }, () => {
-                    this.handleSubmit();
-                })
+                    params = {
+                        sort: 'price',
+                        order: 'desc'
+                    }
+
+                this.props.sortProducts(params)
+
                 break;
             case 3:
-                this.setState({
-                    sort: 'discount',
-                    order: 'desc'
-                }, () => {
-                    this.handleSubmit();
-                })
+                    params = {
+                        sort: 'discount',
+                        order: 'desc'
+                    }
+
+                this.props.sortProducts(params)
+
                 break;
             default:
                 break;
