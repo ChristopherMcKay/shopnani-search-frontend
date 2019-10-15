@@ -75,6 +75,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#3b5998',
     fontSize: '20px',
     marginRight: '22px'
+  },
+  xIcon: {
+    fontSize: '20px',
+    cursor: 'pointer',
   }
 }));
 
@@ -141,6 +145,9 @@ export default function LoginButton() {
         <Fade in={open}>
           <div className={classes.paper}>
             <form className={classes.form}>
+            <div style={{width: '100%', textAlign: 'right'}}>
+                <FontAwesomeIcon icon={faTimes} onClick={handleClose} className={classes.xIcon} />
+              </div>
               <h2 id="transition-modal-title">Sign In</h2>
 
               <div style={{display: 'block'}}>
@@ -210,7 +217,10 @@ export default function LoginButton() {
         <Fade in={open}>
           <div className={classes.paper}>
             <form className={classes.form}>
-              <h2 id="transition-modal-title">Join ShopNani today and get ₹50 cash bonus*</h2>
+            <div style={{width: '100%', textAlign: 'right'}}>
+                <FontAwesomeIcon icon={faTimes} onClick={handleClose} className={classes.xIcon} />
+              </div>
+              <h3 id="transition-modal-title">Join ShopNani today and get ₹50 cash bonus*</h3>
 
               <TextField
                 className={classes.margin}
@@ -286,6 +296,9 @@ export default function LoginButton() {
       <Fade in={open}>
           <div className={classes.paper}>
             <form className={classes.form}>
+            <div style={{width: '100%', textAlign: 'right'}}>
+                <FontAwesomeIcon icon={faTimes} onClick={handleClose} className={classes.xIcon} />
+              </div>
               <h3 id="transition-modal-title">Forgot password?</h3>
 
 
@@ -298,7 +311,7 @@ export default function LoginButton() {
                 style={{marginBottom: '8px', width: '270px'}}
               />
 
-              <p style={{fontSize: '12px', color: '#666'}}>We'll send you a link to reset your password</p>
+              <p style={{fontSize: '14px', color: '#666', marginBottom: '20px'}}>We'll send you a link to reset your password</p>
 
               <button className={classes.button} onClick={handleSubmit} style={{width: '270px'}}>Submit</button>
 
