@@ -20,19 +20,19 @@ class Footer extends Component {
         return (
             <div style={styles}>
                 <div style={{float: 'left', margin: '10px 2.1%'}}>
-                    <Link href={'#'} color="inherit" style={{marginRight: '25px'}}>
+                    <Link href={'/about'} color="inherit" style={{marginRight: '25px'}}>
                         About
                     </Link>
-                    <Link href={'#'} color="inherit">
+                    <Link href={'/search-description'} color="inherit">
                         How Search Works
                     </Link>
                 </div>
 
                 <div style={{float: 'right', margin: '10px 2.1%'}}>
-                    <Link href={'#'} color="inherit" style={{marginRight: '25px'}}>
+                    <Link href={'/privacy-policy'} color="inherit" style={{marginRight: '25px'}}>
                         Privacy
                     </Link>
-                    <Link href={'#'} color="inherit">
+                    <Link href={'/terms-and-conditions'} color="inherit">
                         Terms
                     </Link>
                 </div>

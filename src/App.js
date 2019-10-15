@@ -3,6 +3,12 @@ import { Route, Switch } from 'react-router-dom'
 
 import SearchPage from './Components/SearchPage';
 import SearchResults from './Components/SearchResults';
+
+import About from './Components/About';
+import HowSearchWorks from './Components/HowSearchWorks';
+import Privacy from './Components/Privacy';
+import Terms from './Components/Terms';
+
 import Footer from './Components/Footer';
 
 
@@ -16,7 +22,16 @@ class App extends Component {
 
           <Route exact path="/" component={SearchPage} />
 
-          <Route exact path="/search" component={SearchResults} />     
+          <Route exact path="/search" component={SearchResults} />  
+
+          <Route exact path="/about" component={About} />
+
+          <Route exact path="/search-description" component={HowSearchWorks} />  
+
+          <Route exact path="/privacy-policy" component={Privacy} />  
+
+          <Route exact path="/terms-and-conditions" component={Terms} />  
+
           <Footer />
       </div>
     );
