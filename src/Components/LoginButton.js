@@ -14,6 +14,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -78,7 +81,7 @@ const useStyles = makeStyles(theme => ({
 export default function LoginButton() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [member, setMember] = React.useState(true);
+  const [member, setMember] = React.useState('sign');
 
   const handleOpen = () => {
     setOpen(true);
@@ -94,8 +97,29 @@ export default function LoginButton() {
     console.log('it submitted');
   };
   
-  const handleMember = () => {
-    setMember(!member);
+  const handleMember = (event) => {
+    event.preventDefault();
+    console.log(event.target.name)
+
+    switch(event.target.name) {
+
+      case 'join':
+        setMember('join');
+      
+        break;
+
+      case 'sign':
+        setMember('sign');
+        break;
+
+      case 'pswd':
+        setMember('pswd');
+        
+        break;
+
+      default:
+        // code block
+    }
   };
 
   const responseFacebook = (response) => {
@@ -110,29 +134,10 @@ export default function LoginButton() {
     console.log("Captcha value:", value);
   };
 
-  return (
-    <React.Fragment>
-      <Button variant="contained" onClick={handleOpen} className={classes.menuButton}>
-            Sign In
-          </Button>
-
-      
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        disableEnforceFocus
-        disablePortal
-        disableAutoFocus
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        { member === true ? 
+  const getPopup = () => {
+    console.log(member)
+    if(member === 'sign') {
+      return(
         <Fade in={open}>
           <div className={classes.paper}>
             <form className={classes.form}>
@@ -192,13 +197,17 @@ export default function LoginButton() {
               <button className={classes.button} onClick={handleSubmit} style={{marginTop: '10px'}}>Sign In</button>
             </form>
 
-            <Link href={'#'} style={{color: 'DodgerBlue'}}>Forgot Password?</Link>
+            <Link href={'#'} style={{color: 'DodgerBlue'}} name="pswd" onClick={handleMember}>Forgot Password?</Link>
 
-            <p>Not a member? <Link href={'#'} onClick={handleMember} style={{color: 'DodgerBlue'}}>Join now</Link></p>
+            <p>Not a member? <Link href={'#'} name="join" onClick={handleMember} style={{color: 'DodgerBlue'}}>Join now</Link></p>
           </div>
         </Fade>
-        : 
-          <Fade in={open}>
+      )
+    }
+    else if (member === 'join') {
+      console.log('we made it here!')
+      return(
+        <Fade in={open}>
           <div className={classes.paper}>
             <form className={classes.form}>
               <h2 id="transition-modal-title">Join ShopNani today and get ₹50 cash bonus*</h2>
@@ -261,7 +270,7 @@ export default function LoginButton() {
             </form>
 
 
-            <p>Already a member? <Link href={'#'} onClick={handleMember} style={{color: 'DodgerBlue'}}>Sign In</Link></p>
+            <p>Already a member? <Link href={'#'} name="sign" onClick={handleMember} style={{color: 'DodgerBlue'}}>Sign In</Link></p>
 
             <p style={{fontSize: '12px', color: '#666'}}>By joining, I agree to the <Link href={'#'}style={{color: '#666', textDecoration: 'underline'}} >Terms &amp; Conditions</Link> and <Link href={'#'} style={{color: '#666', textDecoration: 'underline'}}>Privacy Policy</Link></p>
 
@@ -270,7 +279,61 @@ export default function LoginButton() {
 
           </div>
         </Fade>
-        }
+      )
+    }
+    else if (member === 'pswd') {
+      return(
+      <Fade in={open}>
+          <div className={classes.paper}>
+            <form className={classes.form}>
+              <h3 id="transition-modal-title">Forgot password?</h3>
+
+
+              <TextField
+                className={classes.margin}
+                label="Email"
+                variant="outlined"
+                fullWidth
+                id="mui-theme-provider-outlined-input"
+                style={{marginBottom: '8px', width: '270px'}}
+              />
+
+              <p style={{fontSize: '12px', color: '#666'}}>We'll send you a link to reset your password</p>
+
+              <button className={classes.button} onClick={handleSubmit} style={{width: '270px'}}>Submit</button>
+
+              <Link href={'#'} name="sign" onClick={handleMember} style={{color: 'DodgerBlue'}}>Sign In</Link>
+            </form>
+          </div>
+        </Fade>
+      )
+    }
+  }
+
+  return (
+    <React.Fragment>
+      <Button variant="contained" onClick={handleOpen} className={classes.menuButton}>
+            Sign In
+          </Button>
+
+      
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        disableEnforceFocus
+        disablePortal
+        disableAutoFocus
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        { 'hi' === 'hi' ?
+           getPopup() : null }
       </Modal>
     </React.Fragment>
   );

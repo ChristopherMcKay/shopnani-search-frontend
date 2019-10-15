@@ -6,6 +6,9 @@ import Fade from '@material-ui/core/Fade';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -18,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: '0 0 12px 3px #333',
     padding: theme.spacing(2, 4, 3),
     fontFamily: 'Open Sans',
+    width: '450px'
   },
   form: {
     textAlign: 'center'
@@ -32,7 +36,12 @@ const useStyles = makeStyles(theme => ({
     fontSize: '16px',
     borderRadius: '20px',
     padding: '10px',
-    width: '300px'
+    width: '300px',
+    marginBottom: '10px'
+  },
+  icon: {
+    fontSize: '20px',
+    cursor: 'pointer',
   }
 }));
 
@@ -79,7 +88,10 @@ export default function Contact() {
         <Fade in={open}>
           <div className={classes.paper}>
             <form className={classes.form}>
-              <h2 id="transition-modal-title">Contact us</h2>
+              <div style={{width: '100%', textAlign: 'right'}}>
+                <FontAwesomeIcon icon={faTimes} onClick={handleClose} className={classes.icon} />
+              </div>
+              <h3 id="transition-modal-title">Couldn't find what you're looking for? Let me assist you personally.</h3>
 
               <TextField
                 className={classes.margin}
@@ -87,7 +99,7 @@ export default function Contact() {
                 variant="outlined"
                 fullWidth
                 id="mui-theme-provider-outlined-input"
-                style={{display: 'block', marginBottom: '20px', width: '300px'}}
+                style={{marginBottom: '20px', width: '350px'}}
               />
 
               <TextField
@@ -96,7 +108,7 @@ export default function Contact() {
                 variant="outlined"
                 fullWidth
                 id="mui-theme-provider-outlined-input"
-                style={{display: 'block', marginBottom: '20px', width: '300px'}}
+                style={{marginBottom: '20px', width: '350px'}}
               />
 
 <             TextField
@@ -106,7 +118,7 @@ export default function Contact() {
                 multiline
                 rows="4"
                 id="mui-theme-provider-outlined-input"
-                style={{width: '300px', marginBottom: '20px'}}
+                style={{width: '350px', marginBottom: '20px'}}
               />
 
               <button className={classes.button} onClick={handleSubmit}>Send Message</button>
