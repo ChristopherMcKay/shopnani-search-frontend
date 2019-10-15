@@ -301,6 +301,7 @@ export default function LoginButton() {
               </div>
               <h3 id="transition-modal-title">Forgot password?</h3>
 
+              <p style={{fontSize: '14px', color: '#666', marginBottom: '20px'}}>We'll send you a link to reset your password</p>
 
               <TextField
                 className={classes.margin}
@@ -308,10 +309,10 @@ export default function LoginButton() {
                 variant="outlined"
                 fullWidth
                 id="mui-theme-provider-outlined-input"
-                style={{marginBottom: '8px', width: '270px'}}
+                style={{marginBottom: '18px', width: '270px'}}
               />
 
-              <p style={{fontSize: '14px', color: '#666', marginBottom: '20px'}}>We'll send you a link to reset your password</p>
+              
 
               <button className={classes.button} onClick={handleSubmit} style={{width: '270px'}}>Submit</button>
 
