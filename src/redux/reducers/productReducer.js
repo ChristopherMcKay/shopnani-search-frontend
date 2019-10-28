@@ -1,7 +1,7 @@
 import { GET_PRODUCTS, GET_PRODUCTS_REQUEST, GET_PRODUCTS_ERROR, SORT_PRODUCTS } from '../constants/product';
-import { updateExpression } from '@babel/types';
 
 let initialState = {
+    initialProducts: [],
     products: [],
     isLoading: false,
     error: null,
@@ -35,6 +35,7 @@ export default (state = initialState, action) => {
         
         case GET_PRODUCTS:
 
+            updated.initialProducts = action.payload;
             updated.products = action.payload;
             updated.isLoading = false;
             updated.error = null;
@@ -42,7 +43,6 @@ export default (state = initialState, action) => {
             return updated;
 
         case SORT_PRODUCTS:
-
             updated.products = action.payload;
             updated.isLoading = false;
             updated.error = null;

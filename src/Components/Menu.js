@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
+import Link from '@material-ui/core/Link';
 
 const menuStyle = {
     display: 'inline',
@@ -48,9 +49,10 @@ class Menuz extends Component {
                     onClose={this.handleClose}
                     TransitionComponent={Fade}
                 >
-                    <MenuItem onClick={this.handleClose}>Home</MenuItem>
+                    {/* <MenuItem onClick={this.handleClose}>Home</MenuItem>
                     <MenuItem onClick={this.handleClose}>Search</MenuItem>
                     <MenuItem onClick={this.handleClose}>Coupons</MenuItem>
+                    <MenuItem><Link href="/profile">Profile</Link></MenuItem> */}
                 </Menu> 
             </React.Fragment>
         )

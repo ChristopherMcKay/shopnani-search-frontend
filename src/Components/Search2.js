@@ -126,6 +126,7 @@ const styles = theme => ({
       input: {
         fontFamily: 'Open Sans',
         marginTop:'4px',
+        marginBottom: '4px',
         fontSize: '12px',
       }
   });
@@ -223,13 +224,8 @@ class Search extends Component {
                       {options.children}
                     </Paper>
                   )}
-                />
-                    <i className="material-icons" style={{color: '#00A991', marginTop: '7px '}}>
-                        mic
-                    </i>
-                <span style={{marginBottom: '3px', fontSize: '28px', color: '#00A991'}}>|</span>
-                    
-                	<button style={{border: 'none', backgroundColor: 'transparent', padding: '0', marginTop: '4px'}}><svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg></button>
+                />  
+                	<button style={{border: 'none', backgroundColor: 'transparent', padding: '0', marginTop: '3px'}}><svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg></button>
 							
             </Container>
                 

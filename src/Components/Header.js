@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PartialLogo from './PartialLogo';
 import Menu from './Menu';
-
+import LoginButtonHome from './LoginButtonHome';
 
 class Header extends Component {
     render() {
@@ -11,7 +11,8 @@ class Header extends Component {
                     <PartialLogo />
                 </div>
                 <div style={{float: 'right', margin: '2.5% 1.4%'}}>
-                    <Menu />
+                    {/* <Menu /> */}
+                    <LoginButtonHome {...this.props} />
                 </div>
             </div>
         )

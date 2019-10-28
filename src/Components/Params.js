@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -190,10 +191,17 @@ class Params extends Component {
 
                 <div style={{backgroundColor: '#EEE', textAlign: 'center', padding: '10px', marginBottom: '15px'}}>
 
+
                     <p style={{fontSize: '14px', fontWeight: 'bold', fontFamily: 'Open Sans'}}>Need Help?</p>
-                    <p style={{fontWeight: 'bold', fontFamily: 'Open Sans'}}>Help us decide ></p>
+
+                    <Link href="https://blog.shopnani.com/contact-us/" target="_blank"> 
+                        <p style={{fontWeight: 'bold', fontFamily: 'Open Sans', color: 'black'}}>Help us decide ></p>
+                    </Link>
+                   
+                    <Link href="https://blog.shopnani.com/contact-us/" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width={36} height={36} viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>
+                    </Link>
                     
-                    <button style={{backgroundColor: 'transparent', border: 'none'}}><svg xmlns="http://www.w3.org/2000/svg" width={36} height={36} viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg></button>
                 </div>
             </div>
         )

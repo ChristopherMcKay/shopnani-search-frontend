@@ -8,13 +8,22 @@ import About from './Components/About';
 import HowSearchWorks from './Components/HowSearchWorks';
 import Privacy from './Components/Privacy';
 import Terms from './Components/Terms';
-
+import Profile from './Components/Profile';
 import Footer from './Components/Footer';
+
+import { pageLoad } from './redux/actions/userAuthAction';
+
+import { connect } from 'react-redux';
+
 
 
 import './App.css';
 
 class App extends Component {
+
+  componentWillMount() {
+    // this.props.pageLoad();
+  }
 
   render() {
     return (
@@ -32,10 +41,18 @@ class App extends Component {
 
           <Route exact path="/terms-and-conditions" component={Terms} />  
 
+          <Route exact path="/profile" component={Profile} />  
+
           <Footer />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (store) => {
+  return {
+    authUser: store.user
+  }
+}
+
+export default connect(mapStateToProps, { pageLoad })(App);

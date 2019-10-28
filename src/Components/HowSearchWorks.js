@@ -4,6 +4,9 @@ import Link from '@material-ui/core/Link';
 
 import FullLogo from './FullLogo';
 
+import searchImg from '../images/howsearchworks-img1.png';
+import searchGIF from '../images/howsearchworks-img2.gif';
+
 
 export default class HowSearchWorks extends Component {
     render() {
@@ -13,21 +16,38 @@ export default class HowSearchWorks extends Component {
                     <FullLogo />
                 </div>
 
-                <h1 style={{color: '#444'}}>How Search Works</h1>
+                <br />
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at lobortis massa. Integer finibus dolor mauris, non elementum libero pharetra vitae. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas ut efficitur orci. Donec aliquam ex a justo lobortis iaculis. Quisque sit amet dui commodo, volutpat nulla ut, lacinia felis. Fusce sit amet massa lectus. Maecenas id nulla urna. In vehicula elit eget congue sodales. In molestie semper enim non suscipit. Sed placerat eu metus a tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras turpis magna, blandit vel metus hendrerit, consectetur feugiat augue. Aenean sodales tortor eu dolor iaculis, non efficitur urna lacinia. Cras sed augue id leo tincidunt fringilla id vel purus.</p>
-                <p>
-                Praesent in porttitor odio. Fusce quam diam, lobortis et turpis vel, luctus consequat purus. Aliquam erat volutpat. Aliquam dui libero, accumsan quis nisl nec, maximus aliquam sem. Aliquam eget nibh condimentum, lobortis ipsum et, iaculis velit. Fusce vitae volutpat dolor, id elementum ex. Vestibulum egestas lacus vel nisl gravida, non faucibus risus scelerisque. Etiam eget lectus in augue aliquam ultricies. Nunc vel lectus gravida, dignissim magna sit amet, tincidunt ante. Aenean pulvinar est elit, non consectetur purus commodo in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                </p>
-                
-                <p>
-                Phasellus sit amet nibh tempor, pharetra lectus ac, laoreet ante. Proin rutrum mauris id gravida dapibus. Duis massa eros, ullamcorper a diam non, dapibus posuere libero. Vivamus porta nulla bibendum, pellentesque odio at, maximus justo. Suspendisse dapibus ullamcorper ex, quis efficitur libero luctus ac. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo leo sit amet interdum rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet neque in lectus interdum dictum eu ut felis. Sed placerat tristique massa tincidunt rutrum.
-                </p>
+                <p style={{fontWeight: 'bold'}}>ShopNani searches all the top stores so that you don’t have to.</p>
+
+                <p style={{color: '#888'}}>When you shop here, you shop everywhere</p>
+
+                <div style={{width: '600px', margin: '0 auto'}}>
+                    <p>Every time you search, there are thousands, sometimes millions, of products with a similar name. How ShopNani figures out which results to show starts long before you even type, and is guided by a commitment to you to provide the best products available at best prices.</p>
+                </div>
                 
 
-                <p>
-                Sed laoreet eros quis erat pharetra lacinia. Ut eget erat velit. Nullam finibus orci nec bibendum luctus. Nunc tincidunt posuere ligula non commodo. Sed et lobortis nisi. Etiam dictum scelerisque tellus ac interdum. Proin faucibus ex lorem, non tristique orci posuere quis. Ut finibus sollicitudin viverra.
-                </p>
+                <p><img src={searchImg} width={500}></img></p>
+
+                <p style={{fontWeight: 'bold'}}>Organizing the products</p>
+
+                <div style={{width: '600px', margin: '0 auto'}}>
+                    <p>We organize thousands of products in an array within a few milliseconds, every time you perform a search.</p>
+                </div>
+                
+                <div style={{width: '600px', margin: '0 auto'}}>
+                    <p>We’re continuing to go beyond organizing the products available to better understand the people, products and things you care about. To do this, we not only organize products but other types of information too, like which phone’s your favorite phone, which laptop you’re interested in.</p>
+                </div>
+                
+
+                <p><img src={searchGIF} width={400}></img></p>
+
+                <p style={{fontWeight: 'bold'}}>Our mission</p>
+
+                <div style={{width: '600px', margin: '0 auto'}}>
+                    <p>From the beginning, 2016, our mission has been to deliver the best prices with minimum efforts and help our users take intelligence decisions while buying anything online. Today, 329,100,000 people in India shop online. We consider it a privilege to be able to help a small percentage of that help. As technology continues to evolve, our commitment will always be the same: helping everyone find the product they need.</p>
+                </div>
+                
 
                 <br />
                 <Link href={'/'} style={{fontSize: '24px', fontWeight: 'bold', color: '#444'}}>

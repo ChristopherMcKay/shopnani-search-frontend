@@ -37,6 +37,7 @@ export const searchProducts = (searchObj) => dispatch => {
               
             console.log(`Performance is ${performance} seconds`);
 
+            console.log(products);
             if(products.length > 0) {
                 dispatch({
                     type: GET_PRODUCTS,
@@ -71,38 +72,57 @@ export const searchProducts = (searchObj) => dispatch => {
 
     let state = store.getState();
 
-    let products = state.products.products;
+    let products = [...state.products.initialProducts];
+
 
     setTimeout(function() {
+      if(params.maxPrice || params.minPrice) {
+        products = products.filter( product => {
+          let amount = product.sellingPrice
+          let rl = params.minPrice
+          let ru = params.maxPrice
+  
+          return (amount >= rl && amount <= ru)
+    
+        })
+      }
 
-      let newProducts = products.sort((a, b) => {
-        if(params.order === "desc") {
-            switch(params.sort) {
-                case "discount":
-                    return b.discountPercentage - a.discountPercentage
-                    break
-                case "price": 
-                default:
-                    return b.sellingPrice - a.sellingPrice
-            }
-        } else if(params.order === "asc") {
-            switch(params.sort) {
-                case "discount":
-                    return a.discountPercentage - b.discountPercentage
-                    break
-                case "price": 
-                default:
-                    return a.sellingPrice - b.sellingPrice
-            }
-        }
-    })
-  
-    console.log(newProducts)
-  
-                    dispatch({
-                        type: SORT_PRODUCTS,
-                        payload: newProducts
-                    });
+      if(params.order || params.sort) {
+        let newProducts = products.sort((a, b) => {
+          if(params.order === "desc") {
+              switch(params.sort) {
+                  case "discount":
+                      return b.discountPercentage - a.discountPercentage
+                      break
+                  case "price": 
+                  default:
+                      return b.sellingPrice - a.sellingPrice
+              }
+          } else if(params.order === "asc") {
+              switch(params.sort) {
+                  case "discount":
+                      return a.discountPercentage - b.discountPercentage
+                      break
+                  case "price": 
+                  default:
+                      return a.sellingPrice - b.sellingPrice
+              }
+          }
+      })
+        
+                      dispatch({
+                          type: SORT_PRODUCTS,
+                          payload: newProducts
+                      });
+
+      }
+      else {
+        dispatch({
+          type: SORT_PRODUCTS,
+          payload: products
+      });
+      }
+      
 
     },700);
 

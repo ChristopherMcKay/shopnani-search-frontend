@@ -2,7 +2,9 @@
   /* text-align: center; */
   position: relative;
   min-height: 100vh;
+  font-display: swap;
 }
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

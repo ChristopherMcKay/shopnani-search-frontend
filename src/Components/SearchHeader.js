@@ -29,9 +29,10 @@ const styles = {
 }
 
 const rightStyle = {
-    width: '160px',
-    marginTop: '15px',
-    float: 'right'
+    width: '90px',
+    marginTop: '30px',
+    display: 'inline-block',
+    marginLeft: '580px'
 }
 
 class SearchHeader extends Component {
@@ -88,39 +89,44 @@ class SearchHeader extends Component {
         switch(sortOrder) {
 
             case 0:
-                params = {
+
+                this.setState({
                     sort: '',
                     order: ''
-                }
-
-                this.props.sortProducts(params)
+                }, () => {
+                    this.props.sortProducts(this.state)
+                })
 
                 break;
             case 1:
 
-                params = {
+                this.setState({
                     sort: 'price',
                     order: 'asc'
-                }
-                this.props.sortProducts(params)
+                }, () => {
+                    this.props.sortProducts(this.state)
+                })
 
                 break;
             case 2:
-                    params = {
-                        sort: 'price',
-                        order: 'desc'
-                    }
-
-                this.props.sortProducts(params)
+                        
+                this.setState({
+                    sort: 'price',
+                    order: 'desc'
+                }, () => {
+                    this.props.sortProducts(this.state)
+                })
 
                 break;
             case 3:
-                    params = {
-                        sort: 'discount',
-                        order: 'desc'
-                    }
-
-                this.props.sortProducts(params)
+                    
+                        
+                this.setState({
+                    sort: 'discount',
+                    order: 'desc'
+                }, () => {
+                    this.props.sortProducts(this.state)
+                })       
 
                 break;
             default:
@@ -134,16 +140,17 @@ class SearchHeader extends Component {
             minPrice: minMax[0],
             maxPrice: minMax[1]
         }, () => {
-            this.handleSubmit();
+            this.props.sortProducts(this.state);
         })
     }
 
     render() {
         return (
             <React.Fragment >
-                <form onSubmit={this.handleSubmit} >
 
                 <div style={wholeStyles}>
+
+                <form onSubmit={this.handleSubmit} >
 
                     <div style={styles}>
                         <FullLogo />
@@ -151,8 +158,13 @@ class SearchHeader extends Component {
                         
                         
                     </div>
+                    <Params 
+                    getMinMaxPrice={this.getMinMaxPrice}
+                    getSellers={this.getSellers}
+                />
+                </form>
                     <div style={rightStyle}>
-                            <Menu />
+                            {/* <Menu /> */}
                             <LoginButton />
                         </div>
                     <div style={{borderBottom: '0.5px solid lightgrey', display: 'flex', flexWrap: 'wrap', marginRight: '5px', backgroundColor: 'white', clear: 'both'}}>
@@ -160,11 +172,7 @@ class SearchHeader extends Component {
                         <Sort getSortAndOrder={this.getSortAndOrder} />
                     </div>
                 </div>
-                <Params 
-                    getMinMaxPrice={this.getMinMaxPrice}
-                    getSellers={this.getSellers}
-                />
-                </form>
+                
             </React.Fragment>
         )
     }

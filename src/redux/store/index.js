@@ -4,11 +4,15 @@ import thunk from 'redux-thunk';
 
 import { productReducer } from '../reducers';
 import { suggestionReducer } from '../reducers';
+import { userReducer } from '../reducers';
+import { errorReducer } from '../reducers';
 
 
 const reducers = combineReducers({
     products: productReducer,
-    suggestions: suggestionReducer
+    suggestions: suggestionReducer,
+    user: userReducer,
+    error: errorReducer
 });
 
 const initialState = {};

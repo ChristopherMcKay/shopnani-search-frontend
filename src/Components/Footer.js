@@ -23,15 +23,16 @@ class Footer extends Component {
                     <Link href={'/about'} color="inherit" style={{marginRight: '25px'}}>
                         About
                     </Link>
+                    <Link href={'https://blog.shopnani.com/'} target="_blank" color="inherit" style={{marginRight: '25px'}}>
+                        Blog
+                    </Link>
                     <Link href={'/search-description'} color="inherit">
                         How Search Works
                     </Link>
                 </div>
 
                 <div style={{float: 'right', margin: '10px 2.1%'}}>
-                    <Link href={'/privacy-policy'} color="inherit" style={{marginRight: '25px'}}>
-                        Privacy
-                    </Link>
+                
                     <Link href={'/terms-and-conditions'} color="inherit">
                         Terms
                     </Link>
