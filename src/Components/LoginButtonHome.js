@@ -102,6 +102,7 @@ function LoginButton(props) {
 
   const handleClose = () => {
     setOpen(false);
+    setMember('sign');
   };
 
   const handleLoginSubmit = (event) => {

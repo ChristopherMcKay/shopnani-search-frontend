@@ -74,6 +74,10 @@ class ProductList extends Component {
         compareProducts: []
     };
 
+    componentDidMount() {
+        this.loadData();
+    }
+
 
     loadData = () => {
         console.log('running')

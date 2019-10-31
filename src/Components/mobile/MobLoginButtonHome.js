@@ -18,11 +18,11 @@ import { withRouter } from "react-router";
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
-import { googleLogin } from '../redux/actions/userAuthAction';
-import { googleRegister } from '../redux/actions/userAuthAction';
+import { googleLogin } from '../../redux/actions/userAuthAction';
+import { googleRegister } from '../../redux/actions/userAuthAction';
 
-import { login } from '../redux/actions/userAuthAction';
-import { register } from '../redux/actions/userAuthAction';
+import { login } from '../../redux/actions/userAuthAction';
+import { register } from '../../redux/actions/userAuthAction';
 
 
 
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2, 4, 3),
     fontFamily: 'Open Sans',
     textAlign: 'center',
-    width: '300px'
+    width: '363px'
   },
   form: {
     textAlign: 'center'
@@ -63,8 +63,10 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     color: 'white',
     backgroundColor: '#00A991',
-    fontSize: '12px',
-    height: '35px',
+    fontSize: '11px',
+    height: '30px',
+    display: 'inline',
+    width: '77px'
   },
   google: {
     width: '300px',
@@ -111,7 +113,6 @@ function LoginButton(props) {
       password: event.target.pswd.value
     }
     props.login(userInfo);
-    props.history.push('/profile');
   };
 
   const handleJoinSubmit = (event) => {
@@ -122,7 +123,6 @@ function LoginButton(props) {
       name:event.target.name.value
     }
     props.register(userInfo);
-    props.history.push('/profile');
   };
   
   const handleMember = (event) => {
@@ -152,15 +152,13 @@ function LoginButton(props) {
 
 
   const responseGoogleLogin = (response) => {
-    console.log(response);
-
+    console.log(response)
     props.googleLogin(response.profileObj);
     props.history.push('/profile');
   };
 
   const responseGoogleRegister = (response) => {
-    console.log(response);
-
+    console.log(response)
     props.googleRegister(response.profileObj);
     props.history.push('/profile');
   };
@@ -247,6 +245,7 @@ function LoginButton(props) {
               <TextField
                 className={classes.margin}
                 label="Name"
+                type="password"
                 name="name"
                 variant="outlined"
                 fullWidth
@@ -267,7 +266,6 @@ function LoginButton(props) {
               <TextField
                 className={classes.margin}
                 label="Password"
-                type="password"
                 name="pswd"
                 variant="outlined"
                 fullWidth
