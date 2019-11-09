@@ -16,6 +16,8 @@ export const searchProducts = (searchObj) => dispatch => {
 
   let searchTerm = searchObj.product
 
+  console.log(searchObj)
+
   dispatch({
     type: GET_PRODUCTS_REQUEST,
     payload: searchTerm

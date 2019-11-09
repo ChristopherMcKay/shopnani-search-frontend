@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import FullLogo from './FullLogo';
-import Search2 from './Search2';
-import Menu from './Menu';
-import LoginButton from './LoginButton';
-import Sort from './Sort';
-import Params from './Params';
+import MobFullLogo from './MobFullLogo';
+import MobSearch2 from './MobSearch2';
+import Menu from '../Menu';
+import MobLoginButton from './MobLoginButton';
+import MobSort from './MobSort';
+import MobParams from './MobParams';
 
-import { searchProducts, sortProducts } from '../redux/actions/productAction';
+import { searchProducts, sortProducts } from '../../redux/actions/productAction';
 
 import { withRouter } from "react-router";
 
@@ -14,28 +14,26 @@ import { connect } from 'react-redux';
 
 
 
-const wholeStyles = {
-    width: '100%',
-    position: 'fixed',
-    top: '0',
-    zIndex: '990',
-    backgroundColor: 'white',
-    display: 'inline-block'
-}
 
 const styles = {
-    float: 'left',
-    width: '750px'
+    textAlign: 'center',
+    position: 'relative',
+    width: '100%'
 }
 
-const rightStyle = {
-    width: '90px',
-    marginTop: '30px',
-    display: 'inline-block',
-    marginLeft: '580px'
+const buttonStyles = {
+    position: 'absolute',
+    right: '32px',
+    top: '25px'
 }
 
-class SearchHeader extends Component {
+const logoStyles = {
+    position: 'absolute',
+    left: '15px',
+    top: '1px'
+}
+
+class MobSearchHeader extends Component {
 
     state = {
         product: this.props.products.searchTerm,
@@ -145,36 +143,39 @@ class SearchHeader extends Component {
     }
 
     render() {
-
         const { user } = this.props
-
         return (
             <React.Fragment >
 
-                <div style={wholeStyles}>
-
+                <div style={styles}>
                 <form onSubmit={this.handleSubmit} >
 
-                    <div style={styles}>
-                        <FullLogo />
-                        <Search2 getSearchTerm={this.getSearchTerm}/>
-                        
-                        
-                    </div>
-                    <Params 
-                    getMinMaxPrice={this.getMinMaxPrice}
-                    getSellers={this.getSellers}
-                />
-                </form>
-                    <div style={rightStyle}>
-                            {/* <Menu /> */}
-                            {user.isAuth ? <p style={{display: 'inline'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px'}}></img></p> : <LoginButton {...this.props} />}
+                        <div style={logoStyles}>
+                            <MobFullLogo />
                         </div>
-                    <div style={{borderBottom: '0.5px solid lightgrey', display: 'flex', flexWrap: 'wrap', marginRight: '5px', backgroundColor: 'white', clear: 'both'}}>
-                        <span style={{fontWeight: 'bold', marginTop: '15px', marginLeft: '19%'}}>Sort By</span>
-                        <Sort getSortAndOrder={this.getSortAndOrder} />
+
+                        <MobSearch2 getSearchTerm={this.getSearchTerm}/>
+
+                        <div style={{borderBottom: '0.5px solid lightgrey', backgroundColor: 'white', width: '100%', display: 'flex', justifyContent: 'center'}}>
+                        <MobSort getSortAndOrder={this.getSortAndOrder} />
                     </div>
-                </div>
+                        
+                    <div>
+                        <MobParams 
+                        getMinMaxPrice={this.getMinMaxPrice}
+                        getSellers={this.getSellers}
+                        />
+                    </div>
+                    
+                </form>
+                            {/* <Menu /> */}
+                            <div style={buttonStyles}>
+                            {user.isAuth ? <p style={{display: 'inline', fontSize: '12px'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px', marginLeft: '5px'}}></img></p> : <MobLoginButton {...this.props} />}
+                            </div>
+
+                    
+
+                    </div>
                 
             </React.Fragment>
         )
@@ -189,4 +190,4 @@ const mapStateToProps = (state) => {
     }
   }
 
-export default connect(mapStateToProps, { searchProducts, sortProducts })(withRouter(SearchHeader));
+export default connect(mapStateToProps, { searchProducts, sortProducts })(withRouter(MobSearchHeader));

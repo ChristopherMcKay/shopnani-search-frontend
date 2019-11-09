@@ -13,6 +13,9 @@ import Profile from './Components/Profile';
 import Footer from './Components/Footer';
 
 import MobSearchPage from './Components/mobile/MobSearchPage';
+import MobSearchResults from './Components/mobile/MobSearchResults';
+import MobHowSearchWorks from './Components/mobile/MobHowSearchWorks';
+import MobProfile from './Components/mobile/MobProfile';
 
 import { pageLoad } from './redux/actions/userAuthAction';
 
@@ -22,7 +25,7 @@ import './App.css';
 
 const layout = layoutGenerator({
   mobile: 0,
-  tablet: 600,
+  tablet: 650,
   desktop: 1050,
 });
  
@@ -33,7 +36,7 @@ const OnDesktop = layout.is('desktop');
 class App extends Component {
 
   componentWillMount() {
-    
+
   }
 
   render() {
@@ -42,11 +45,24 @@ class App extends Component {
 
         <OnMobile>
           <Route exact path="/" component={MobSearchPage} />
+          <Route exact path="/search" component={MobSearchResults} />  
+          <Route exact path="/about" component={About} />
+          <Route exact path="/search-description" component={MobHowSearchWorks} />  
+          <Route exact path="/privacy-policy" component={Privacy} />  
+          <Route exact path="/terms-and-conditions" component={Terms} /> 
+          <Route exact path="/profile" component={MobProfile} />  
           <Footer />
         </OnMobile>
 
         <OnAtLeastTablet>
-          tablet
+          <Route exact path="/" component={SearchPage} />
+          <Route exact path="/search" component={SearchResults} />  
+          <Route exact path="/about" component={About} />
+          <Route exact path="/search-description" component={HowSearchWorks} />  
+          <Route exact path="/privacy-policy" component={Privacy} />  
+          <Route exact path="/terms-and-conditions" component={Terms} />  
+          <Route exact path="/profile" component={Profile} />  
+          <Footer />
         </OnAtLeastTablet>
 
 

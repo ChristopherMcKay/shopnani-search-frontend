@@ -32,7 +32,7 @@ class Footer extends Component {
                 </div>
 
                 <div style={{float: 'right', margin: '10px 2.1%'}}>
-                
+
                     <Link href={'/terms-and-conditions'} color="inherit">
                         Terms
                     </Link>

@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: '0 0 12px 3px #333',
     padding: theme.spacing(2, 4, 3),
     fontFamily: 'Open Sans',
-    width: '400px'
+    width: '310px'
   },
   form: {
     textAlign: 'center'
@@ -36,12 +36,15 @@ const useStyles = makeStyles(theme => ({
     fontSize: '16px',
     borderRadius: '20px',
     padding: '10px',
-    width: '300px',
+    width: '250px',
     marginBottom: '10px'
   },
   icon: {
     fontSize: '20px',
     cursor: 'pointer',
+  },
+  margin: {
+    fontSize: '10px'
   }
 }));
 
@@ -99,7 +102,7 @@ export default function Contact() {
                 variant="outlined"
                 fullWidth
                 id="mui-theme-provider-outlined-input"
-                style={{marginBottom: '20px', width: '300px'}}
+                style={{marginBottom: '20px', width: '250px'}}
               />
 
               <TextField
@@ -108,17 +111,17 @@ export default function Contact() {
                 variant="outlined"
                 fullWidth
                 id="mui-theme-provider-outlined-input"
-                style={{marginBottom: '20px', width: '300px'}}
+                style={{marginBottom: '20px', width: '250px'}}
               />
 
 <             TextField
                 className={classes.margin}
-                label="What is the product you're looking for?"
+                label="What is the product?"
                 variant="outlined"
                 multiline
                 rows="4"
                 id="mui-theme-provider-outlined-input"
-                style={{width: '300px', marginBottom: '20px'}}
+                style={{width: '250px', marginBottom: '20px'}}
               />
 
               <button className={classes.button} onClick={handleSubmit}>Send Message</button>
