@@ -78,7 +78,7 @@ class Product extends Component {
         return (
             <Paper className={classes.root}>
                 <div style={{display: 'inline-block', width: '220px', verticalAlign: 'text-top'}}>
-                    <img src={product.image} className={classes.img}></img>
+                    <img src={product.image} className={classes.img} alt=""></img>
                     <FormControlLabel
                     value="end"
                     control={<Checkbox color="primary" onChange={this.compareChange} />}
@@ -103,19 +103,19 @@ class Product extends Component {
                         <span style={{fontSize: '16px', fontWeight: 'bold'}}>Available on</span>
                         <br />
                         <Link href={product.link} target="_blank">
-                            {product.seller == 'flipkart' ? 
-                            <img src={FlipartImg} width={100}></img> 
+                            {product.seller === 'flipkart' ? 
+                            <img src={FlipartImg} width={100} alt=""></img> 
                             :
                             null   
                         }
-                        {product.seller == 'suviDeals' ? 
-                            <img src={SuvidealsImg} width={90}></img> 
+                        {product.seller === 'suviDeals' ? 
+                            <img src={SuvidealsImg} width={90} alt=""></img> 
                             :
                             null   
                         }
 
-                        {product.seller == 'amazon' ? 
-                            <img src={AmazonImg} width={70} style={{marginTop: '10px'}}></img> 
+                        {product.seller === 'amazon' ? 
+                            <img src={AmazonImg} width={70} style={{marginTop: '10px'}} alt=""></img> 
                             :
                             null   
                         }

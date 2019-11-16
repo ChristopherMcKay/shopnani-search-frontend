@@ -11,7 +11,6 @@ export default ( state = initialState, action ) => {
 
     switch (action.type) {
         case GET_ERRORS:
-            console.log('now we made it this far')
             updated.message = action.payload
             return updated;
 

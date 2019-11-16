@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logoImg from '../../images/ShopNaniLogo-Main.png';
 import nani from '../../images/Nani.png';
 import Link from '@material-ui/core/Link';
 
@@ -13,7 +12,7 @@ class PartialLogo extends Component {
         }
         return (
             <div>
-                <Link href={'#'}><img src={nani} style={styles}></img></Link>
+                <Link href={'#'}><img src={nani} style={styles} alt=""></img></Link>
             </div>
         )
     }

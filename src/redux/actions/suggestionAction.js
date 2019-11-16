@@ -29,12 +29,7 @@ export const getSuggestions = (searchTerm) => dispatch => {
                     payload: suggestions
                 });
             }
-            else {
-                console.log('line 29')
-
-                let error =  'No results found. Please try a different search.';
-            
-            }
+        
           })
           .catch( error => {
             console.log('we got an error', error)

@@ -15,7 +15,6 @@ export const Logout = () => dispatch => {
 
 export const googleLogin = (userInfo) => dispatch => {
 
-    console.log('From userAuthAction', userInfo);
 
     let userObj = {
         name: userInfo.givenName + ' ' + userInfo.familyName,
@@ -35,10 +34,8 @@ export const googleLogin = (userInfo) => dispatch => {
     Axios.post('/user/login/gauth', userObj, axiosConfig)
             .then( result => {
 
-                console.log(result.data);
 
                 if(result.data.success === false) {
-                    console.log('we made it this far')
                     dispatch({
                         type: GET_ERRORS,
                         payload: result.data.message
@@ -76,7 +73,6 @@ export const googleLogin = (userInfo) => dispatch => {
 
 export const googleRegister = (userInfo) => dispatch => {
 
-    console.log('From userAuthAction', userInfo);
 
     let userObj = {
         name: userInfo.givenName + ' ' + userInfo.familyName,
@@ -96,10 +92,8 @@ export const googleRegister = (userInfo) => dispatch => {
     Axios.post('/user/register/gauth', userObj, axiosConfig)
             .then( result => {
 
-                console.log(result.data);
 
                 if(result.data.success === false) {
-                    console.log('we made it this far')
                     dispatch({
                         type: GET_ERRORS,
                         payload: result.data.message
@@ -137,7 +131,6 @@ export const googleRegister = (userInfo) => dispatch => {
 
 export const login = (userInfo) => dispatch => {
 
-    console.log('From userAuthAction', userInfo);
 
     let userObj = {
         name: userInfo.givenName + ' ' + userInfo.familyName,
@@ -158,10 +151,8 @@ export const login = (userInfo) => dispatch => {
     Axios.post('/user/login', userObj, axiosConfig)
             .then( result => {
 
-                console.log(result.data);
 
                 if(result.data.success === false) {
-                    console.log('we made it this far')
                     dispatch({
                         type: GET_ERRORS,
                         payload: result.data.message
@@ -191,7 +182,7 @@ export const login = (userInfo) => dispatch => {
                 console.log(error.response.data.message)
                 let message = ''
 
-                if(error.response.data.message == 'Bad request!') {
+                if(error.response.data.message === 'Bad request!') {
                     message = 'Please fill out all fields!'
                 }
                 dispatch({
@@ -204,7 +195,6 @@ export const login = (userInfo) => dispatch => {
 
 export const register = (userInfo) => dispatch => {
 
-    console.log('From userAuthAction', userInfo);
 
     let userObj = {
         name: userInfo.name,
@@ -223,10 +213,8 @@ export const register = (userInfo) => dispatch => {
     Axios.post('/user/register', userObj, axiosConfig)
             .then( result => {
 
-                console.log(result.data);
 
                 if(result.data.success === false) {
-                    console.log('we made it this far')
                     dispatch({
                         type: GET_ERRORS,
                         payload: result.data.message
@@ -255,7 +243,7 @@ export const register = (userInfo) => dispatch => {
                 console.log(error.response.data.message)
                 let message = ''
 
-                if(error.response.data.message == 'Bad request!') {
+                if(error.response.data.message === 'Bad request!') {
                     message = 'Please fill out all fields!'
                 }
                 dispatch({
@@ -270,14 +258,12 @@ export const getRefID = () => dispatch => {
 
     let state = store.getState();
 
-    console.log(state)
-
     let user = state.user.user;
 
     const token = localStorage.getItem('jwtToken') || undefined;
 
             if(token) {
-                const decoded = jwt_decode(token);
+                // const decoded = jwt_decode(token);
 
                 let axiosConfig = {
                     headers: {
@@ -289,7 +275,6 @@ export const getRefID = () => dispatch => {
 
                   Axios.get(`/getrefid`, axiosConfig)
                         .then( res => {
-                            console.log(res.data.referrerId)
 
                             let userObj = {
                                 avatar: user.avatar,

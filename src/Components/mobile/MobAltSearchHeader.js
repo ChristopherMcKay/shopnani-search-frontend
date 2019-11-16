@@ -39,7 +39,7 @@ class MobAltSearchHeader extends Component {
                 <MobSearch3 />
                 
                 <div style={divStyles}>
-                    {user.isAuth ? <p style={{display: 'inline', fontSize: '12px'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px', marginLeft: '5px'}}></img></p> : <MobLoginButton {...this.props} />}
+                    {user.isAuth ? <p style={{display: 'inline', fontSize: '12px'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px', marginLeft: '5px'}} alt=""></img></p> : <MobLoginButton {...this.props} />}
                 </div>
             </div>
         )

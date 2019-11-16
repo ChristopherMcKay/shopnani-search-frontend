@@ -23,11 +23,11 @@ class Earnings extends Component {
                         </div>
                     </div>
                     <div style={{width: '947px', backgroundColor: 'white', padding: '30px', marginTop: '15px'}}>
-                            <img src={pixar} width={150}></img>
+                            <img src={pixar} width={150} alt=""></img>
                             <div style={{textAlign: 'center', display: 'inline-block', width: '80%'}}>
                                 <span style={{fontSize: '24px', padding: '0', margin: '0', display: 'block'}}>Awwww, don't cry!</span>
                                 <span style={{fontSize: '36px'}}>Soon, you'll be saving a lot with ShopNani</span>
-                                <img src={banner} width={680}></img>
+                                <img src={banner} width={680} alt=""></img>
                             </div>
 
                         </div>

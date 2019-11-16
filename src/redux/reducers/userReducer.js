@@ -12,8 +12,6 @@ export default (state = initialState, action) => {
     switch(action.type) {
         
         case SIGN_IN_OR_SIGN_UP:
-            console.log('line 13:')
-            console.log(action)
             updated.user = action.payload;
             updated.isAuth = true;
 
@@ -25,8 +23,6 @@ export default (state = initialState, action) => {
             return updated;
 
         case REFRESH:
-        console.log('line 13:')
-        console.log(action)
         updated.user = action.payload;
         updated.isAuth = true;
         

@@ -1,7 +1,6 @@
 import { GET_PRODUCTS, GET_PRODUCTS_REQUEST, GET_PRODUCTS_ERROR, SORT_PRODUCTS } from '../constants/product';
 
 import Axios from '../Axios/Axios';
-import deburr from 'lodash/deburr';
 import store from '../store/index';
 
 
@@ -16,7 +15,6 @@ export const searchProducts = (searchObj) => dispatch => {
 
   let searchTerm = searchObj.product
 
-  console.log(searchObj)
 
   dispatch({
     type: GET_PRODUCTS_REQUEST,
@@ -24,22 +22,14 @@ export const searchProducts = (searchObj) => dispatch => {
 })
     
   // HTTP request to the backend for products
-    console.log('before api call')
 
-    let startTime = new Date().getTime();
 
     Axios.get(`/search?q=${searchObj.product}&market=${searchObj.sellers}&by=${searchObj.sort}&s=${searchObj.order}&rl=${searchObj.minPrice}&ru=${searchObj.maxPrice}`, axiosConfig)
           .then(result => {
 
             let products = result.data;
 
-            let finishTime = new Date().getTime();
-
-            let performance = (finishTime - startTime) / 1000;
-              
-            console.log(`Performance is ${performance} seconds`);
-
-            console.log(products);
+            
             if(products.length > 0) {
                 dispatch({
                     type: GET_PRODUCTS,
@@ -95,7 +85,7 @@ export const searchProducts = (searchObj) => dispatch => {
               switch(params.sort) {
                   case "discount":
                       return b.discountPercentage - a.discountPercentage
-                      break
+                      
                   case "price": 
                   default:
                       return b.sellingPrice - a.sellingPrice
@@ -104,7 +94,6 @@ export const searchProducts = (searchObj) => dispatch => {
               switch(params.sort) {
                   case "discount":
                       return a.discountPercentage - b.discountPercentage
-                      break
                   case "price": 
                   default:
                       return a.sellingPrice - b.sellingPrice

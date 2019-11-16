@@ -21,7 +21,6 @@ const divStyles = {
 
 class AltSearchHeader extends Component {
     render() {
-    console.log(this.props)
         const { user } = this.props
         return (
             <div style={styles}>
@@ -29,7 +28,7 @@ class AltSearchHeader extends Component {
                 <Search2 />
                 
                 <div style={divStyles}>
-                    {user.isAuth ? <p style={{display: 'inline'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px'}}></img></p> : <LoginButton {...this.props} />}
+                    {user.isAuth ? <p style={{display: 'inline'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px'}} alt=""></img></p> : <LoginButton {...this.props} />}
                 </div>
             </div>
         )

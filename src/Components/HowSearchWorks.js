@@ -27,7 +27,7 @@ export default class HowSearchWorks extends Component {
                 </div>
                 
 
-                <p><img src={searchImg} width={500}></img></p>
+                <p><img src={searchImg} width={500} alt=""></img></p>
 
                 <p style={{fontWeight: 'bold'}}>Organizing the products</p>
 
@@ -40,7 +40,7 @@ export default class HowSearchWorks extends Component {
                 </div>
                 
 
-                <p><img src={searchGIF} width={400}></img></p>
+                <p><img src={searchGIF} width={400} alt=""></img></p>
 
                 <p style={{fontWeight: 'bold'}}>Our mission</p>
 

@@ -167,7 +167,7 @@ class MobProductList extends Component {
         const { classes } = this.props;
 
         return (
-            <div style={{display: 'inline-block', width: '100%', display: 'flex', justifyContent: 'center'}}>
+            <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
                 {
                 <Container component="main" maxWidth="md" style={{marginTop: '10px', marginLeft: '10px'}}>
                     {this.props.isLoading ? 
@@ -178,7 +178,7 @@ class MobProductList extends Component {
                         null
                         }
 
-                        {this.state.elements.length > 0 & this.props.isLoading == false ? 
+                        {this.state.elements.length > 0 & this.props.isLoading === false ? 
                             <div>
 
                                 {this.state.elements}
@@ -234,13 +234,13 @@ class MobProductList extends Component {
 
                         <div className={classes.products}>
                             <div style={{textAlign: 'center'}}>
-                                <img src={this.state.compareProducts[0].image} className={classes.img}></img>
+                                <img src={this.state.compareProducts[0].image} className={classes.img} alt=""></img>
                                 <p>{this.state.compareProducts[0].title.slice(0, 15)}...</p>
                             </div>
 
                             { this.state.compareProducts[1] ?
                             <div style={{textAlign: 'center'}}>
-                                <img src={this.state.compareProducts[1].image} className={classes.img}></img>
+                                <img src={this.state.compareProducts[1].image} className={classes.img}alt=""></img>
                                 <p>{this.state.compareProducts[1].title.slice(0, 15)}...</p>
                             </div>
                             :

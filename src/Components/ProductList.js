@@ -80,7 +80,6 @@ class ProductList extends Component {
 
 
     loadData = () => {
-        console.log('running')
         this.setState({
             data: this.props.products.products,
             currentPage: this.props.products.currentPage,
@@ -177,7 +176,7 @@ class ProductList extends Component {
                         null
                         }
 
-                        {this.state.elements.length > 0 & this.props.isLoading == false ? 
+                        {this.state.elements.length > 0 & this.props.isLoading === false ? 
                             <div>
 
                                 {this.state.elements}
@@ -214,13 +213,13 @@ class ProductList extends Component {
 
                         <div className={classes.products}>
                             <div style={{textAlign: 'center'}}>
-                                <img src={this.state.compareProducts[0].image} className={classes.img}></img>
+                                <img src={this.state.compareProducts[0].image} className={classes.img}alt=""></img>
                                 <p>{this.state.compareProducts[0].title.slice(0, 15)}...</p>
                             </div>
 
                             { this.state.compareProducts[1] ?
                             <div style={{textAlign: 'center'}}>
-                                <img src={this.state.compareProducts[1].image} className={classes.img}></img>
+                                <img src={this.state.compareProducts[1].image} className={classes.img}alt=""></img>
                                 <p>{this.state.compareProducts[1].title.slice(0, 15)}...</p>
                             </div>
                             :

@@ -14,7 +14,7 @@ class FullLogo extends Component {
         }
         return (
             <div style={{display: 'inline'}}>
-                <Link href={'/'}><img src={logoImg} style={styles}></img></Link>
+                <Link href={'/'}><img src={logoImg} style={styles} alt=""></img></Link>
             </div>
         )
     }

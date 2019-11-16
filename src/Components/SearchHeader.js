@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import FullLogo from './FullLogo';
 import Search2 from './Search2';
-import Menu from './Menu';
 import LoginButton from './LoginButton';
 import Sort from './Sort';
 import Params from './Params';
@@ -83,8 +82,6 @@ class SearchHeader extends Component {
       }
 
       getSortAndOrder = (sortOrder) => {
-
-        let params = {}
 
         switch(sortOrder) {
 
@@ -168,7 +165,7 @@ class SearchHeader extends Component {
                 </form>
                     <div style={rightStyle}>
                             {/* <Menu /> */}
-                            {user.isAuth ? <p style={{display: 'inline'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px'}}></img></p> : <LoginButton {...this.props} />}
+                            {user.isAuth ? <p style={{display: 'inline'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px'}} alt=""></img></p> : <LoginButton {...this.props} />}
                         </div>
                     <div style={{borderBottom: '0.5px solid lightgrey', display: 'flex', flexWrap: 'wrap', marginRight: '5px', backgroundColor: 'white', clear: 'both'}}>
                         <span style={{fontWeight: 'bold', marginTop: '15px', marginLeft: '19%'}}>Sort By</span>

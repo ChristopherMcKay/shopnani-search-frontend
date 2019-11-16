@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { layoutGenerator } from 'react-break';
 
 import SearchPage from './Components/SearchPage';
@@ -35,9 +35,6 @@ const OnDesktop = layout.is('desktop');
 
 class App extends Component {
 
-  componentWillMount() {
-
-  }
 
   render() {
     return (

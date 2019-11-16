@@ -7,12 +7,10 @@ import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import GoogleLogin from 'react-google-login';
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 
 import { withRouter } from "react-router";
 
@@ -183,7 +181,7 @@ function LoginButton(props) {
               <h2 id="transition-modal-title">Sign In</h2>
               
               <GoogleLogin
-                  clientId="92733740831-9d5b0gkds1as9nv0bjv5u7icjii9gk28.apps.googleusercontent.com"
+                  clientId="92733740831-sn042t4imbrq3vtk3r0k1s2tcpr5r4ca.apps.googleusercontent.com"
                   buttonText="Continue with Google"
                   onSuccess={responseGoogleLogin}
                   onFailure={responseGoogleLogin}
@@ -290,7 +288,7 @@ function LoginButton(props) {
               
 
               <GoogleLogin
-                  clientId="92733740831-9d5b0gkds1as9nv0bjv5u7icjii9gk28.apps.googleusercontent.com"
+                  clientId="92733740831-sn042t4imbrq3vtk3r0k1s2tcpr5r4ca.apps.googleusercontent.com"
                   buttonText="Continue with Google"
                   onSuccess={responseGoogleRegister}
                   onFailure={responseGoogleRegister}
@@ -370,8 +368,8 @@ function LoginButton(props) {
           timeout: 500,
         }}
       >
-        { 'hi' === 'hi' ?
-           getPopup() : null }
+        { 
+           getPopup() }
       </Modal>
     </React.Fragment>
   );

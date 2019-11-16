@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const Axios = axios.create({
-    baseURL: 'https://shopnani-search.herokuapp.com',
+    baseURL: 'http://webapi.shopnani.com/',
     timeout: 50000
 })
 

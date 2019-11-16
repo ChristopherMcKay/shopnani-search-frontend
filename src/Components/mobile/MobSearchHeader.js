@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import MobFullLogo from './MobFullLogo';
 import MobSearch2 from './MobSearch2';
-import Menu from '../Menu';
 import MobLoginButton from './MobLoginButton';
 import MobSort from './MobSort';
 import MobParams from './MobParams';
@@ -84,7 +83,6 @@ class MobSearchHeader extends Component {
 
       getSortAndOrder = (sortOrder) => {
 
-        let params = {}
 
         switch(sortOrder) {
 
@@ -172,7 +170,7 @@ class MobSearchHeader extends Component {
                 </form>
                             {/* <Menu /> */}
                             <div style={buttonStyles}>
-                            {user.isAuth ? <p style={{display: 'inline', fontSize: '12px'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px', marginLeft: '5px'}}></img></p> : <MobLoginButton {...this.props} />}
+                            {user.isAuth ? <p style={{display: 'inline', fontSize: '12px'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px', marginLeft: '5px'}} alt=""></img></p> : <MobLoginButton {...this.props} />}
                             </div>
 
                     

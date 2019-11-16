@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PartialLogo from './PartialLogo';
-import Menu from './Menu';
 import LoginButtonHome from './LoginButtonHome';
 
 import { connect } from 'react-redux';
@@ -18,7 +17,7 @@ class Header extends Component {
                 </div>
                 <div style={{float: 'right', margin: '2.5% 1.4%'}}>
                     {/* <Menu /> */}
-                    {user.isAuth ? <p style={{display: 'inline'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px'}}></img></p> : <LoginButtonHome {...this.props} />}
+                    {user.isAuth ? <p style={{display: 'inline'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px'}} alt=""></img></p> : <LoginButtonHome {...this.props} />}
                 </div>
             </div>
         )

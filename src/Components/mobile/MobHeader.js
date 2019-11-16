@@ -14,7 +14,7 @@ class Header extends Component {
                 </div>
                 <div style={{float: 'right', margin: '2.5% 1.4%'}}>
                     {/* <Menu /> */}
-                    {user.isAuth ? <p style={{display: 'inline', fontSize: '12px'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px', marginLeft: '5px'}}></img></p> : <MobLoginButtonHome {...this.props} />}
+                    {user.isAuth ? <p style={{display: 'inline', fontSize: '12px'}}>Welcome, {user.user.name}! <img src={user.user.avatar} width={30} style={{borderRadius: '15px', marginLeft: '5px'}} alt=""></img></p> : <MobLoginButtonHome {...this.props} />}
                 </div>
             </div>
         )

@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
-import deburr from 'lodash/deburr';
 import Autosuggest from 'react-autosuggest'
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import InputBase from '@material-ui/core/InputBase';
-import Link from '@material-ui/core/Link';
 
 import Contact from './Contact';
 
@@ -25,7 +21,7 @@ import { connect } from 'react-redux';
 
 
 function renderInputComponent(inputProps) {
-  const { classes, inputRef = () => {}, ref, ...other } = inputProps;
+  const { classes, ref, ...other } = inputProps;
   return (
     <InputBase
       fullWidth

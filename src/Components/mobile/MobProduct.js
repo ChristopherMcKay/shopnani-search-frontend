@@ -3,8 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import FlipartImg from '../../images/flipkart.png';
 import SuvidealsImg from '../../images/suvideals.png';
 import AmazonImg from '../../images/amazon.png';
@@ -83,7 +81,7 @@ class MobProduct extends Component {
         return (
             <Paper className={classes.root}>
                 <div style={{display: 'block', width: '100%', minHeight: '120px'}}>
-                    <img src={product.image} className={classes.img}></img>
+                    <img src={product.image} className={classes.img} alt=""></img>
                     {/* <FormControlLabel
                     value="end"
                     control={<Checkbox color="primary" onChange={this.compareChange} />}
@@ -111,19 +109,19 @@ class MobProduct extends Component {
                         <span style={{fontSize: '11px', fontWeight: 'bold'}}>Available on</span>
                         <br />
                         <Link href={product.link} target="_blank">
-                            {product.seller == 'flipkart' ? 
-                            <img src={FlipartImg} width={90}></img> 
+                            {product.seller === 'flipkart' ? 
+                            <img src={FlipartImg} width={90} alt=""></img> 
                             :
                             null   
                         }
-                        {product.seller == 'suviDeals' ? 
-                            <img src={SuvidealsImg} width={80}></img> 
+                        {product.seller === 'suviDeals' ? 
+                            <img src={SuvidealsImg} width={80} alt=""></img> 
                             :
                             null   
                         }
 
-                        {product.seller == 'amazon' ? 
-                            <img src={AmazonImg} width={60} style={{marginTop: '10px'}}></img> 
+                        {product.seller === 'amazon' ? 
+                            <img src={AmazonImg} width={60} style={{marginTop: '10px'}} alt=""></img> 
                             :
                             null   
                         }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import deburr from 'lodash/deburr';
 import Autosuggest from 'react-autosuggest'
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
@@ -9,7 +8,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import InputBase from '@material-ui/core/InputBase';
-import Link from '@material-ui/core/Link';
 
 import { withRouter } from "react-router";
 
@@ -20,7 +18,7 @@ import { connect } from 'react-redux';
 
 
 function renderInputComponent(inputProps) {
-  const { classes, inputRef = () => {}, ref, ...other } = inputProps;
+  const { classes, ref, ...other } = inputProps;
   return (
     <InputBase
       fullWidth
